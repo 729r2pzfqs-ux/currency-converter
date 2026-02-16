@@ -186,17 +186,15 @@
             </div>
 
             <!-- Travel Mode -->
-            <div id="panel-travel" class="glass rounded-2xl p-6 md:p-8 hidden">
+            <div id="panel-travel" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="mb-6">
                     <label class="block text-sm text-slate-400 mb-2">I have</label>
-                    <div class="flex gap-2">
-                        <input type="number" id="travelAmount" value="500" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold" placeholder="Amount">
-                        <select id="travelCurrency" class="currency-select px-4 py-3 rounded-xl font-medium min-w-[120px]">
-                            <option value="USD" selected>🇺🇸 USD</option>
-                            <option value="EUR">🇪🇺 EUR</option>
-                            <option value="GBP">🇬🇧 GBP</option>
-                        </select>
-                    </div>
+                    <input type="number" id="travelAmount" value="500" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3" placeholder="Amount">
+                    <select id="travelCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
+                        <option value="USD" selected>🇺🇸 USD</option>
+                        <option value="EUR">🇪🇺 EUR</option>
+                        <option value="GBP">🇬🇧 GBP</option>
+                    </select>
                 </div>
                 
                 <h3 class="text-lg font-semibold mb-4">That's worth in popular destinations:</h3>
