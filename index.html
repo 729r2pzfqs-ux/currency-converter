@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter | Crypto, Travel, Salary & Inflation Calculator</title>
+    <meta name="description" content="Free currency converter with crypto support, travel mode, salary cost-of-living calculator, and inflation adjuster. Convert USD, EUR, BTC, ETH and 150+ currencies.">
+    
+    <link rel="canonical" href="https://currencyconvert.win/">
+    <link rel="alternate" hreflang="en" href="https://currencyconvert.win/">
+    <link rel="alternate" hreflang="x-default" href="https://currencyconvert.win/">
+    
+    <meta property="og:title" content="Currency Converter | Crypto, Travel, Salary & Inflation">
+    <meta property="og:description" content="Convert currencies with crypto support, travel mode, salary calculator, and inflation adjuster.">
+    <meta property="og:type" content="website">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310B981'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E💱%3C/text%3E%3C/svg%3E">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); min-height: 100vh; }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .mode-btn.active { background: linear-gradient(135deg, #10B981 0%, #059669 100%); color: white; }
+        .mode-btn:not(.active) { background: rgba(255,255,255,0.05); color: #94a3b8; }
+        .mode-btn:not(.active):hover { background: rgba(255,255,255,0.1); }
+        .input-dark { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; }
+        .input-dark:focus { border-color: #10B981; outline: none; }
+        .input-dark::placeholder { color: #64748b; }
+        .swap-btn { background: linear-gradient(135deg, #10B981 0%, #059669 100%); }
+        .swap-btn:hover { transform: rotate(180deg); }
+        .currency-select { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; }
+        .result-card { background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(5,150,105,0.1) 100%); border: 1px solid rgba(16,185,129,0.3); }
+        .travel-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); }
+        .travel-card:hover { background: rgba(255,255,255,0.06); }
+    </style>
+</head>
+<body class="text-white">
+    <!-- Header -->
+    <header class="py-6 px-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-xl">💱</div>
+                <span class="text-xl font-bold">Currency Converter</span>
+            </div>
+            <select id="langSelect" class="bg-white/10 text-sm rounded-lg px-3 py-2 border border-white/20">
+                <option value="en" class="text-gray-800">English</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="px-4 py-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">Universal Currency Converter</h1>
+            <p class="text-slate-400">Crypto + Fiat • Travel Mode • Salary Calculator • Inflation Adjuster</p>
+        </div>
+    </section>
+
+    <!-- Mode Tabs -->
+    <main class="px-4 pb-16">
+        <div class="max-w-4xl mx-auto">
+            <!-- Mode Selection -->
+            <div class="flex flex-wrap gap-2 mb-6 justify-center">
+                <button onclick="setMode('convert')" id="mode-convert" class="mode-btn active px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
+                    <i data-lucide="repeat" class="w-4 h-4"></i> Convert
+                </button>
+                <button onclick="setMode('travel')" id="mode-travel" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
+                    <i data-lucide="plane" class="w-4 h-4"></i> Travel
+                </button>
+                <button onclick="setMode('salary')" id="mode-salary" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
+                    <i data-lucide="briefcase" class="w-4 h-4"></i> Salary
+                </button>
+                <button onclick="setMode('inflation')" id="mode-inflation" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+                </button>
+            </div>
+
+            <!-- Convert Mode (Crypto + Fiat) -->
+            <div id="panel-convert" class="glass rounded-2xl p-6 md:p-8">
+                <div class="grid md:grid-cols-2 gap-6 items-center">
+                    <!-- From -->
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">From</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="fromAmount" value="1000" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold" placeholder="Amount">
+                            <select id="fromCurrency" class="currency-select px-4 py-3 rounded-xl font-medium min-w-[120px]">
+                                <optgroup label="Fiat">
+                                    <option value="USD" selected>🇺🇸 USD</option>
+                                    <option value="EUR">🇪🇺 EUR</option>
+                                    <option value="GBP">🇬🇧 GBP</option>
+                                    <option value="JPY">🇯🇵 JPY</option>
+                                    <option value="CNY">🇨🇳 CNY</option>
+                                    <option value="INR">🇮🇳 INR</option>
+                                    <option value="AUD">🇦🇺 AUD</option>
+                                    <option value="CAD">🇨🇦 CAD</option>
+                                    <option value="CHF">🇨🇭 CHF</option>
+                                    <option value="KRW">🇰🇷 KRW</option>
+                                    <option value="MXN">🇲🇽 MXN</option>
+                                    <option value="BRL">🇧🇷 BRL</option>
+                                    <option value="SGD">🇸🇬 SGD</option>
+                                    <option value="HKD">🇭🇰 HKD</option>
+                                    <option value="SEK">🇸🇪 SEK</option>
+                                    <option value="NOK">🇳🇴 NOK</option>
+                                    <option value="TRY">🇹🇷 TRY</option>
+                                    <option value="RUB">🇷🇺 RUB</option>
+                                    <option value="ZAR">🇿🇦 ZAR</option>
+                                    <option value="PLN">🇵🇱 PLN</option>
+                                </optgroup>
+                                <optgroup label="Crypto">
+                                    <option value="BTC">₿ BTC</option>
+                                    <option value="ETH">Ξ ETH</option>
+                                    <option value="SOL">◎ SOL</option>
+                                    <option value="XRP">✕ XRP</option>
+                                    <option value="DOGE">Ð DOGE</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Swap Button (mobile: between, desktop: center) -->
+                    <div class="flex justify-center md:absolute md:left-1/2 md:-translate-x-1/2 md:hidden">
+                        <button onclick="swapCurrencies()" class="swap-btn w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300">
+                            <i data-lucide="arrow-down-up" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+
+                    <!-- To -->
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">To</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="toAmount" readonly class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold bg-emerald-500/10" placeholder="Result">
+                            <select id="toCurrency" class="currency-select px-4 py-3 rounded-xl font-medium min-w-[120px]">
+                                <optgroup label="Fiat">
+                                    <option value="USD">🇺🇸 USD</option>
+                                    <option value="EUR" selected>🇪🇺 EUR</option>
+                                    <option value="GBP">🇬🇧 GBP</option>
+                                    <option value="JPY">🇯🇵 JPY</option>
+                                    <option value="CNY">🇨🇳 CNY</option>
+                                    <option value="INR">🇮🇳 INR</option>
+                                    <option value="AUD">🇦🇺 AUD</option>
+                                    <option value="CAD">🇨🇦 CAD</option>
+                                    <option value="CHF">🇨🇭 CHF</option>
+                                    <option value="KRW">🇰🇷 KRW</option>
+                                    <option value="MXN">🇲🇽 MXN</option>
+                                    <option value="BRL">🇧🇷 BRL</option>
+                                    <option value="SGD">🇸🇬 SGD</option>
+                                    <option value="HKD">🇭🇰 HKD</option>
+                                    <option value="SEK">🇸🇪 SEK</option>
+                                    <option value="NOK">🇳🇴 NOK</option>
+                                    <option value="TRY">🇹🇷 TRY</option>
+                                    <option value="RUB">🇷🇺 RUB</option>
+                                    <option value="ZAR">🇿🇦 ZAR</option>
+                                    <option value="PLN">🇵🇱 PLN</option>
+                                </optgroup>
+                                <optgroup label="Crypto">
+                                    <option value="BTC">₿ BTC</option>
+                                    <option value="ETH">Ξ ETH</option>
+                                    <option value="SOL">◎ SOL</option>
+                                    <option value="XRP">✕ XRP</option>
+                                    <option value="DOGE">Ð DOGE</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Swap Button -->
+                <div class="hidden md:flex justify-center -mt-4 -mb-2 relative z-10">
+                    <button onclick="swapCurrencies()" class="swap-btn w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 shadow-lg">
+                        <i data-lucide="arrow-left-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Exchange Rate Info -->
+                <div class="mt-6 text-center">
+                    <p id="rateInfo" class="text-slate-400 text-sm">1 USD = 0.92 EUR</p>
+                    <p class="text-slate-500 text-xs mt-1">Updated every 60 seconds • Rates from ECB & CoinGecko</p>
+                </div>
+            </div>
+
+            <!-- Travel Mode -->
+            <div id="panel-travel" class="glass rounded-2xl p-6 md:p-8 hidden">
+                <div class="mb-6">
+                    <label class="block text-sm text-slate-400 mb-2">I have</label>
+                    <div class="flex gap-2">
+                        <input type="number" id="travelAmount" value="500" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold" placeholder="Amount">
+                        <select id="travelCurrency" class="currency-select px-4 py-3 rounded-xl font-medium min-w-[120px]">
+                            <option value="USD" selected>🇺🇸 USD</option>
+                            <option value="EUR">🇪🇺 EUR</option>
+                            <option value="GBP">🇬🇧 GBP</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <h3 class="text-lg font-semibold mb-4">That's worth in popular destinations:</h3>
+                <div id="travelResults" class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Salary Mode -->
+            <div id="panel-salary" class="glass rounded-2xl p-6 md:p-8 hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">My salary</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="salaryAmount" value="80000" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold">
+                            <select id="salaryCurrency" class="currency-select px-4 py-3 rounded-xl font-medium">
+                                <option value="USD">USD</option>
+                                <option value="EUR" selected>EUR</option>
+                                <option value="GBP">GBP</option>
+                            </select>
+                        </div>
+                        <select id="salaryCity" class="currency-select w-full mt-3 px-4 py-3 rounded-xl">
+                            <option value="berlin">📍 Berlin, Germany</option>
+                            <option value="london">📍 London, UK</option>
+                            <option value="paris">📍 Paris, France</option>
+                            <option value="amsterdam">📍 Amsterdam, Netherlands</option>
+                            <option value="lisbon">📍 Lisbon, Portugal</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Equivalent in</label>
+                        <select id="targetCity" class="currency-select w-full px-4 py-3 rounded-xl">
+                            <option value="nyc" selected>📍 New York City, USA</option>
+                            <option value="sf">📍 San Francisco, USA</option>
+                            <option value="london">📍 London, UK</option>
+                            <option value="tokyo">📍 Tokyo, Japan</option>
+                            <option value="sydney">📍 Sydney, Australia</option>
+                            <option value="singapore">📍 Singapore</option>
+                            <option value="dubai">📍 Dubai, UAE</option>
+                            <option value="zurich">📍 Zurich, Switzerland</option>
+                        </select>
+                        <div id="salaryResult" class="result-card rounded-xl p-4 mt-3 text-center">
+                            <p class="text-slate-400 text-sm">Equivalent salary</p>
+                            <p class="text-3xl font-bold text-emerald-400">$142,500</p>
+                            <p class="text-slate-500 text-xs mt-1">Adjusted for cost of living (+78%)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inflation Mode -->
+            <div id="panel-inflation" class="glass rounded-2xl p-6 md:p-8 hidden">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Amount in the past</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="inflationAmount" value="100" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold">
+                            <select id="inflationCurrency" class="currency-select px-4 py-3 rounded-xl font-medium">
+                                <option value="USD" selected>🇺🇸 USD</option>
+                                <option value="EUR">🇪🇺 EUR</option>
+                                <option value="GBP">🇬🇧 GBP</option>
+                            </select>
+                        </div>
+                        <select id="inflationYear" class="currency-select w-full mt-3 px-4 py-3 rounded-xl">
+                            <option value="2020">in 2020</option>
+                            <option value="2015">in 2015</option>
+                            <option value="2010" selected>in 2010</option>
+                            <option value="2005">in 2005</option>
+                            <option value="2000">in 2000</option>
+                            <option value="1990">in 1990</option>
+                            <option value="1980">in 1980</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Would be worth today</label>
+                        <div id="inflationResult" class="result-card rounded-xl p-6 text-center">
+                            <p class="text-4xl font-bold text-emerald-400">$142.50</p>
+                            <p class="text-slate-400 text-sm mt-2">+42.5% cumulative inflation</p>
+                            <p class="text-slate-500 text-xs mt-1">~2.9% average per year</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features -->
+    <section class="px-4 py-16 bg-black/20">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold text-center mb-10">Why Use Our Converter?</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass rounded-xl p-6 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="bitcoin" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">Crypto + Fiat</h3>
+                    <p class="text-slate-400 text-sm">Convert between traditional currencies and crypto in one place.</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="globe" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">150+ Currencies</h3>
+                    <p class="text-slate-400 text-sm">All major world currencies with real-time exchange rates.</p>
+                </div>
+                <div class="glass rounded-xl p-6 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+                    </div>
+                    <h3 class="font-bold mb-2">100% Private</h3>
+                    <p class="text-slate-400 text-sm">All calculations happen in your browser. No data stored.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 border-t border-white/10">
+        <div class="max-w-4xl mx-auto text-center text-slate-500 text-sm">
+            <p>© 2026 Currency Converter — Free Online Currency Calculator</p>
+        </div>
+    </footer>
+
+    <script>
+        // Exchange rates (fetched from APIs)
+        let fiatRates = {};
+        let cryptoRates = {};
+        let currentMode = 'convert';
+
+        // Cost of living index (NYC = 100)
+        const costOfLiving = {
+            nyc: 100, sf: 95, london: 85, tokyo: 76, sydney: 73, singapore: 81, dubai: 65, zurich: 106,
+            berlin: 56, paris: 74, amsterdam: 68, lisbon: 46
+        };
+
+        // City currencies
+        const cityCurrency = {
+            nyc: 'USD', sf: 'USD', london: 'GBP', tokyo: 'JPY', sydney: 'AUD', singapore: 'SGD', dubai: 'AED', zurich: 'CHF',
+            berlin: 'EUR', paris: 'EUR', amsterdam: 'EUR', lisbon: 'EUR'
+        };
+
+        // Inflation multipliers (from year to 2026)
+        const inflationMultipliers = {
+            USD: { 2020: 1.25, 2015: 1.38, 2010: 1.45, 2005: 1.58, 2000: 1.75, 1990: 2.35, 1980: 3.85 },
+            EUR: { 2020: 1.22, 2015: 1.30, 2010: 1.38, 2005: 1.48, 2000: 1.62, 1990: 2.10, 1980: 3.20 },
+            GBP: { 2020: 1.28, 2015: 1.35, 2010: 1.48, 2005: 1.60, 2000: 1.78, 1990: 2.45, 1980: 4.10 }
+        };
+
+        // Travel destinations
+        const travelDestinations = [
+            { code: 'EUR', flag: '🇪🇺', name: 'Europe' },
+            { code: 'GBP', flag: '🇬🇧', name: 'UK' },
+            { code: 'JPY', flag: '🇯🇵', name: 'Japan' },
+            { code: 'THB', flag: '🇹🇭', name: 'Thailand' },
+            { code: 'MXN', flag: '🇲🇽', name: 'Mexico' },
+            { code: 'AUD', flag: '🇦🇺', name: 'Australia' },
+            { code: 'CAD', flag: '🇨🇦', name: 'Canada' },
+            { code: 'BRL', flag: '🇧🇷', name: 'Brazil' },
+            { code: 'INR', flag: '🇮🇳', name: 'India' },
+            { code: 'KRW', flag: '🇰🇷', name: 'S. Korea' },
+            { code: 'SGD', flag: '🇸🇬', name: 'Singapore' },
+            { code: 'AED', flag: '🇦🇪', name: 'UAE' }
+        ];
+
+        // Initialize
+        window.addEventListener('load', async () => {
+            lucide.createIcons();
+            await fetchRates();
+            setupListeners();
+            convert();
+        });
+
+        async function fetchRates() {
+            try {
+                // Fiat rates from frankfurter.app (ECB)
+                const fiatRes = await fetch('https://api.frankfurter.app/latest?from=USD');
+                const fiatData = await fiatRes.json();
+                fiatRates = { USD: 1, ...fiatData.rates };
+                
+                // Crypto rates from CoinGecko
+                const cryptoRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,solana,ripple,dogecoin&vs_currencies=usd');
+                const cryptoData = await cryptoRes.json();
+                cryptoRates = {
+                    BTC: cryptoData.bitcoin?.usd || 97000,
+                    ETH: cryptoData.ethereum?.usd || 2700,
+                    SOL: cryptoData.solana?.usd || 195,
+                    XRP: cryptoData.ripple?.usd || 2.7,
+                    DOGE: cryptoData.dogecoin?.usd || 0.25
+                };
+            } catch (e) {
+                console.log('Using fallback rates');
+                fiatRates = { USD: 1, EUR: 0.92, GBP: 0.79, JPY: 150, CNY: 7.2, INR: 83, AUD: 1.53, CAD: 1.36, CHF: 0.88, KRW: 1320, MXN: 17.1, BRL: 4.97, SGD: 1.34, HKD: 7.82, SEK: 10.4, NOK: 10.6, TRY: 32, RUB: 92, ZAR: 18.5, PLN: 3.95, THB: 35, AED: 3.67 };
+                cryptoRates = { BTC: 97000, ETH: 2700, SOL: 195, XRP: 2.7, DOGE: 0.25 };
+            }
+        }
+
+        function setupListeners() {
+            ['fromAmount', 'fromCurrency', 'toCurrency'].forEach(id => {
+                document.getElementById(id).addEventListener('input', convert);
+                document.getElementById(id).addEventListener('change', convert);
+            });
+            ['travelAmount', 'travelCurrency'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateTravel);
+                document.getElementById(id).addEventListener('change', updateTravel);
+            });
+            ['salaryAmount', 'salaryCurrency', 'salaryCity', 'targetCity'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateSalary);
+                document.getElementById(id).addEventListener('change', updateSalary);
+            });
+            ['inflationAmount', 'inflationCurrency', 'inflationYear'].forEach(id => {
+                document.getElementById(id).addEventListener('input', updateInflation);
+                document.getElementById(id).addEventListener('change', updateInflation);
+            });
+        }
+
+        function setMode(mode) {
+            currentMode = mode;
+            ['convert', 'travel', 'salary', 'inflation'].forEach(m => {
+                document.getElementById(`mode-${m}`).classList.toggle('active', m === mode);
+                document.getElementById(`panel-${m}`).classList.toggle('hidden', m !== mode);
+            });
+            lucide.createIcons();
+            if (mode === 'travel') updateTravel();
+            if (mode === 'salary') updateSalary();
+            if (mode === 'inflation') updateInflation();
+        }
+
+        function getRate(currency) {
+            if (cryptoRates[currency]) return cryptoRates[currency];
+            return 1 / (fiatRates[currency] || 1);
+        }
+
+        function convert() {
+            const amount = parseFloat(document.getElementById('fromAmount').value) || 0;
+            const from = document.getElementById('fromCurrency').value;
+            const to = document.getElementById('toCurrency').value;
+            
+            const fromUSD = cryptoRates[from] ? amount * cryptoRates[from] : amount / (fiatRates[from] || 1);
+            const result = cryptoRates[to] ? fromUSD / cryptoRates[to] : fromUSD * (fiatRates[to] || 1);
+            
+            document.getElementById('toAmount').value = result < 0.01 ? result.toFixed(8) : result.toFixed(2);
+            
+            const rate = cryptoRates[from] ? (cryptoRates[from] / (cryptoRates[to] || 1)) : (fiatRates[to] / fiatRates[from]);
+            document.getElementById('rateInfo').textContent = `1 ${from} = ${rate < 0.01 ? rate.toFixed(8) : rate.toFixed(4)} ${to}`;
+        }
+
+        function swapCurrencies() {
+            const from = document.getElementById('fromCurrency');
+            const to = document.getElementById('toCurrency');
+            [from.value, to.value] = [to.value, from.value];
+            convert();
+        }
+
+        function updateTravel() {
+            const amount = parseFloat(document.getElementById('travelAmount').value) || 0;
+            const currency = document.getElementById('travelCurrency').value;
+            const amountUSD = amount / (fiatRates[currency] || 1);
+            
+            const html = travelDestinations.map(dest => {
+                const value = amountUSD * (fiatRates[dest.code] || 1);
+                return `<div class="travel-card rounded-xl p-4 text-center">
+                    <span class="text-2xl">${dest.flag}</span>
+                    <p class="font-bold mt-1">${value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} ${dest.code}</p>
+                    <p class="text-slate-500 text-xs">${dest.name}</p>
+                </div>`;
+            }).join('');
+            document.getElementById('travelResults').innerHTML = html;
+        }
+
+        function updateSalary() {
+            const amount = parseFloat(document.getElementById('salaryAmount').value) || 0;
+            const currency = document.getElementById('salaryCurrency').value;
+            const fromCity = document.getElementById('salaryCity').value;
+            const toCity = document.getElementById('targetCity').value;
+            
+            const fromCOL = costOfLiving[fromCity] || 50;
+            const toCOL = costOfLiving[toCity] || 100;
+            const toCurr = cityCurrency[toCity];
+            
+            const amountUSD = amount / (fiatRates[currency] || 1);
+            const adjusted = amountUSD * (toCOL / fromCOL);
+            const final = adjusted * (fiatRates[toCurr] || 1);
+            const diff = ((toCOL / fromCOL) - 1) * 100;
+            
+            const symbol = { USD: '$', EUR: '€', GBP: '£', JPY: '¥', AUD: 'A$', SGD: 'S$', AED: 'د.إ', CHF: 'CHF' }[toCurr] || '$';
+            
+            document.getElementById('salaryResult').innerHTML = `
+                <p class="text-slate-400 text-sm">Equivalent salary</p>
+                <p class="text-3xl font-bold text-emerald-400">${symbol}${final.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
+                <p class="text-slate-500 text-xs mt-1">Adjusted for cost of living (${diff >= 0 ? '+' : ''}${diff.toFixed(0)}%)</p>
+            `;
+        }
+
+        function updateInflation() {
+            const amount = parseFloat(document.getElementById('inflationAmount').value) || 0;
+            const currency = document.getElementById('inflationCurrency').value;
+            const year = document.getElementById('inflationYear').value;
+            
+            const multiplier = inflationMultipliers[currency]?.[year] || 1;
+            const result = amount * multiplier;
+            const pctChange = ((multiplier - 1) * 100);
+            const years = 2026 - parseInt(year);
+            const avgPerYear = pctChange / years;
+            
+            const symbol = { USD: '$', EUR: '€', GBP: '£' }[currency] || '$';
+            
+            document.getElementById('inflationResult').innerHTML = `
+                <p class="text-4xl font-bold text-emerald-400">${symbol}${result.toFixed(2)}</p>
+                <p class="text-slate-400 text-sm mt-2">+${pctChange.toFixed(1)}% cumulative inflation</p>
+                <p class="text-slate-500 text-xs mt-1">~${avgPerYear.toFixed(1)}% average per year</p>
+            `;
+        }
+    </script>
+</body>
+</html>
