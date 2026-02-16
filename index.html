@@ -206,18 +206,16 @@
             </div>
 
             <!-- Salary Mode -->
-            <div id="panel-salary" class="glass rounded-2xl p-6 md:p-8 hidden">
-                <div class="grid md:grid-cols-2 gap-6">
+            <div id="panel-salary" class="glass rounded-2xl p-5 md:p-8 hidden">
+                <div class="space-y-5 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
                     <div>
                         <label class="block text-sm text-slate-400 mb-2">My salary</label>
-                        <div class="flex gap-2">
-                            <input type="number" id="salaryAmount" value="80000" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold">
-                            <select id="salaryCurrency" class="currency-select px-4 py-3 rounded-xl font-medium">
-                                <option value="USD">USD</option>
-                                <option value="EUR" selected>EUR</option>
-                                <option value="GBP">GBP</option>
-                            </select>
-                        </div>
+                        <input type="number" id="salaryAmount" value="80000" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
+                        <select id="salaryCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium mb-3">
+                            <option value="USD">🇺🇸 USD</option>
+                            <option value="EUR" selected>🇪🇺 EUR</option>
+                            <option value="GBP">🇬🇧 GBP</option>
+                        </select>
                         <select id="salaryCity" class="currency-select w-full mt-3 px-4 py-3 rounded-xl">
                             <optgroup label="🇺🇸 USA">
                                 <option value="nyc">New York City</option>
@@ -314,27 +312,27 @@
             </div>
 
             <!-- Inflation Mode -->
-            <div id="panel-inflation" class="glass rounded-2xl p-6 md:p-8 hidden">
-                <div class="grid md:grid-cols-2 gap-6">
+            <div id="panel-inflation" class="glass rounded-2xl p-5 md:p-8 hidden">
+                <div class="space-y-5">
                     <div>
                         <label class="block text-sm text-slate-400 mb-2">Amount in the past</label>
-                        <div class="flex gap-2">
-                            <input type="number" id="inflationAmount" value="100" class="input-dark flex-1 px-4 py-3 rounded-xl text-lg font-semibold">
-                            <select id="inflationCurrency" class="currency-select px-4 py-3 rounded-xl font-medium">
+                        <input type="number" id="inflationAmount" value="100" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
+                        <div class="grid grid-cols-2 gap-3">
+                            <select id="inflationCurrency" class="currency-select px-4 py-3.5 rounded-xl font-medium">
                                 <option value="USD" selected>🇺🇸 USD</option>
                                 <option value="EUR">🇪🇺 EUR</option>
                                 <option value="GBP">🇬🇧 GBP</option>
                             </select>
+                            <select id="inflationYear" class="currency-select px-4 py-3.5 rounded-xl">
+                                <option value="2020">in 2020</option>
+                                <option value="2015">in 2015</option>
+                                <option value="2010" selected>in 2010</option>
+                                <option value="2005">in 2005</option>
+                                <option value="2000">in 2000</option>
+                                <option value="1990">in 1990</option>
+                                <option value="1980">in 1980</option>
+                            </select>
                         </div>
-                        <select id="inflationYear" class="currency-select w-full mt-3 px-4 py-3 rounded-xl">
-                            <option value="2020">in 2020</option>
-                            <option value="2015">in 2015</option>
-                            <option value="2010" selected>in 2010</option>
-                            <option value="2005">in 2005</option>
-                            <option value="2000">in 2000</option>
-                            <option value="1990">in 1990</option>
-                            <option value="1980">in 1980</option>
-                        </select>
                     </div>
                     <div>
                         <label class="block text-sm text-slate-400 mb-2">Would be worth today</label>
