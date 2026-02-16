@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="sDq3a13C2ybjWQY-r7T9LquLM77Gy5ddgOxe9dJbziQ">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter | Crypto, Travel, Salary & Inflation Calculator</title>
-    <meta name="description" content="Free currency converter with crypto support, travel mode, salary cost-of-living calculator, and inflation adjuster.">
+    <title>Конвертер валют | Крипто, Путешествия, Зарплата и Инфляция</title>
+    <meta name="description" content="Бесплатный конвертер валют с поддержкой криптовалют, режимом путешествий, калькулятором зарплаты и инфляции.">
     
-    <link rel="canonical" href="https://convert-currency.org/">
+    <link rel="canonical" href="https://convert-currency.org/ru.html">
     <link rel="alternate" hreflang="x-default" href="https://convert-currency.org/">
     <link rel="alternate" hreflang="en" href="https://convert-currency.org/">
     <link rel="alternate" hreflang="de" href="https://convert-currency.org/de.html">
@@ -21,8 +21,8 @@
     <link rel="alternate" hreflang="ru" href="https://convert-currency.org/ru.html">
     <link rel="alternate" hreflang="tr" href="https://convert-currency.org/tr.html">
     
-    <meta property="og:title" content="Currency Converter | Crypto, Travel, Salary & Inflation Calculator">
-    <meta property="og:description" content="Free currency converter with crypto support, travel mode, salary cost-of-living calculator, and inflation adjuster.">
+    <meta property="og:title" content="Конвертер валют | Крипто, Путешествия, Зарплата и Инфляция">
+    <meta property="og:description" content="Бесплатный конвертер валют с поддержкой криптовалют, режимом путешествий, калькулятором зарплаты и инфляции.">
     <meta property="og:type" content="website">
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310B981'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E💱%3C/text%3E%3C/svg%3E">
@@ -79,10 +79,10 @@
         <div class="max-w-4xl mx-auto flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-xl">💱</div>
-                <span class="text-xl font-bold">Currency Converter</span>
+                <span class="text-xl font-bold">Конвертер валют</span>
             </div>
             <select id="langSelect" class="bg-white/10 text-sm rounded-lg px-3 py-2 border border-white/20" onchange="switchLang(this.value)">
-                <option value="en" selected class="text-gray-800">English</option>
+                <option value="en" class="text-gray-800">English</option>
                 <option value="de" class="text-gray-800">Deutsch</option>
                 <option value="es" class="text-gray-800">Español</option>
                 <option value="fr" class="text-gray-800">Français</option>
@@ -91,7 +91,7 @@
                 <option value="ja" class="text-gray-800">日本語</option>
                 <option value="hi" class="text-gray-800">हिन्दी</option>
                 <option value="ar" class="text-gray-800">العربية</option>
-                <option value="ru" class="text-gray-800">Русский</option>
+                <option value="ru" selected class="text-gray-800">Русский</option>
                 <option value="tr" class="text-gray-800">Türkçe</option>
             </select>
         </div>
@@ -100,8 +100,8 @@
     <!-- Hero -->
     <section class="px-4 py-8">
         <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-3xl md:text-4xl font-bold mb-3">Universal Currency Converter</h1>
-            <p class="text-slate-400">Crypto + Fiat • Travel Mode • Salary Calculator • Inflation Adjuster</p>
+            <h1 class="text-3xl md:text-4xl font-bold mb-3">Универсальный конвертер валют</h1>
+            <p class="text-slate-400">Крипто + Фиат • Режим путешествий • Калькулятор зарплаты • Инфляция</p>
         </div>
     </section>
 
@@ -111,16 +111,16 @@
             <!-- Mode Selection -->
             <div class="flex flex-wrap gap-2 mb-6 justify-center">
                 <button onclick="setMode('convert')" id="mode-convert" class="mode-btn active px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
-                    <i data-lucide="repeat" class="w-4 h-4"></i> Convert
+                    <i data-lucide="repeat" class="w-4 h-4"></i> Конвертировать
                 </button>
                 <button onclick="setMode('travel')" id="mode-travel" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
-                    <i data-lucide="plane" class="w-4 h-4"></i> Travel
+                    <i data-lucide="plane" class="w-4 h-4"></i> Путешествия
                 </button>
                 <button onclick="setMode('salary')" id="mode-salary" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
-                    <i data-lucide="briefcase" class="w-4 h-4"></i> Salary
+                    <i data-lucide="briefcase" class="w-4 h-4"></i> Зарплата
                 </button>
                 <button onclick="setMode('inflation')" id="mode-inflation" class="mode-btn px-4 py-2.5 rounded-xl font-medium text-sm flex items-center gap-2 transition-all">
-                    <i data-lucide="trending-up" class="w-4 h-4"></i> Inflation
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> Инфляция
                 </button>
             </div>
 
@@ -130,7 +130,7 @@
                 <div class="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-6">
                     <!-- From -->
                     <div class="flex-1">
-                        <label class="block text-sm text-slate-400 mb-2">From</label>
+                        <label class="block text-sm text-slate-400 mb-2">Из</label>
                         <input type="number" id="fromAmount" value="1000" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3" placeholder="Amount">
                         <select id="fromCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                             <optgroup label="Fiat">
@@ -173,7 +173,7 @@
 
                     <!-- To -->
                     <div class="flex-1">
-                        <label class="block text-sm text-slate-400 mb-2">To</label>
+                        <label class="block text-sm text-slate-400 mb-2">В</label>
                         <input type="text" id="toAmount" readonly class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3 bg-emerald-500/10 border-emerald-500/30" placeholder="Result">
                         <select id="toCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                             <optgroup label="Fiat">
@@ -210,14 +210,14 @@
                 <!-- Exchange Rate Info -->
                 <div class="mt-6 pt-5 border-t border-white/10 text-center">
                     <p id="rateInfo" class="text-slate-300 font-medium">1 USD = 0.92 EUR</p>
-                    <p class="text-slate-500 text-xs mt-1">Updated every 60 seconds • Rates from ECB & CoinGecko</p>
+                    <p class="text-slate-500 text-xs mt-1">Обновляется каждые 60 секунд • Курсы ЕЦБ и CoinGecko</p>
                 </div>
             </div>
 
             <!-- Travel Mode -->
             <div id="panel-travel" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="mb-6">
-                    <label class="block text-sm text-slate-400 mb-2">I have</label>
+                    <label class="block text-sm text-slate-400 mb-2">У меня есть</label>
                     <input type="number" id="travelAmount" value="500" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3" placeholder="Amount">
                     <select id="travelCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                         <option value="USD" selected>🇺🇸 USD</option>
@@ -231,7 +231,7 @@
                     </select>
                 </div>
                 
-                <h3 class="text-lg font-semibold mb-4">That's worth in popular destinations:</h3>
+                <h3 class="text-lg font-semibold mb-4">Это стоит в популярных направлениях:</h3>
                 <div id="travelResults" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
                     <!-- Filled by JS -->
                 </div>
@@ -241,7 +241,7 @@
             <div id="panel-salary" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="space-y-5 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">My salary</label>
+                        <label class="block text-sm text-slate-400 mb-2">Моя зарплата</label>
                         <input type="number" id="salaryAmount" value="80000" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
                         <select id="salaryCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium mb-3">
                             <option value="USD">🇺🇸 USD</option>
@@ -290,7 +290,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Equivalent in</label>
+                        <label class="block text-sm text-slate-400 mb-2">Эквивалент в</label>
                         <select id="targetCity" class="currency-select w-full px-4 py-3 rounded-xl">
                             <optgroup label="🇺🇸 USA">
                                 <option value="nyc" selected>New York City</option>
@@ -347,7 +347,7 @@
             <div id="panel-inflation" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="space-y-5">
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Amount in the past</label>
+                        <label class="block text-sm text-slate-400 mb-2">Сумма в прошлом</label>
                         <input type="number" id="inflationAmount" value="100" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
                         <div class="grid grid-cols-2 gap-3">
                             <select id="inflationCurrency" class="currency-select px-4 py-3.5 rounded-xl font-medium">
@@ -367,7 +367,7 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Would be worth today</label>
+                        <label class="block text-sm text-slate-400 mb-2">Стоило бы сегодня</label>
                         <div id="inflationResult" class="result-card rounded-xl p-6 text-center">
                             <p class="text-4xl font-bold text-emerald-400">$142.50</p>
                             <p class="text-slate-400 text-sm mt-2">+42.5% cumulative inflation</p>
@@ -382,14 +382,14 @@
     <!-- Features -->
     <section class="px-4 py-16 bg-black/20">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-2xl font-bold text-center mb-10">Why Use Our Converter?</h2>
+            <h2 class="text-2xl font-bold text-center mb-10">Почему наш конвертер?</h2>
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="glass rounded-xl p-6 text-center">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="bitcoin" class="w-6 h-6 text-emerald-400"></i>
                     </div>
-                    <h3 class="font-bold mb-2">Crypto + Fiat</h3>
-                    <p class="text-slate-400 text-sm">Convert between traditional currencies and crypto in one place.</p>
+                    <h3 class="font-bold mb-2">Крипто + Фиат</h3>
+                    <p class="text-slate-400 text-sm">Конвертируйте традиционные валюты и криптовалюты в одном месте.</p>
                 </div>
                 <div class="glass rounded-xl p-6 text-center">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
@@ -625,6 +625,16 @@
                 <p class="text-slate-400 text-sm mt-2">+${pctChange.toFixed(1)}% cumulative inflation</p>
                 <p class="text-slate-500 text-xs mt-1">~${avgPerYear.toFixed(1)}% average per year</p>
             `;
+        }
+    </script>
+
+    <script>
+        function switchLang(lang) {
+            if (lang === 'en') {
+                window.location.href = '/';
+            } else {
+                window.location.href = '/' + lang + '.html';
+            }
         }
     </script>
 
