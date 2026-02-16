@@ -216,24 +216,90 @@
                             </select>
                         </div>
                         <select id="salaryCity" class="currency-select w-full mt-3 px-4 py-3 rounded-xl">
-                            <option value="berlin">📍 Berlin, Germany</option>
-                            <option value="london">📍 London, UK</option>
-                            <option value="paris">📍 Paris, France</option>
-                            <option value="amsterdam">📍 Amsterdam, Netherlands</option>
-                            <option value="lisbon">📍 Lisbon, Portugal</option>
+                            <optgroup label="🇺🇸 USA">
+                                <option value="nyc">New York City</option>
+                                <option value="sf">San Francisco</option>
+                                <option value="la">Los Angeles</option>
+                                <option value="chicago">Chicago</option>
+                                <option value="miami">Miami</option>
+                                <option value="boston">Boston</option>
+                                <option value="seattle">Seattle</option>
+                                <option value="austin">Austin</option>
+                            </optgroup>
+                            <optgroup label="🇪🇺 Europe">
+                                <option value="london">London, UK</option>
+                                <option value="paris">Paris, France</option>
+                                <option value="berlin" selected>Berlin, Germany</option>
+                                <option value="amsterdam">Amsterdam, Netherlands</option>
+                                <option value="lisbon">Lisbon, Portugal</option>
+                                <option value="madrid">Madrid, Spain</option>
+                                <option value="munich">Munich, Germany</option>
+                                <option value="zurich">Zurich, Switzerland</option>
+                                <option value="dublin">Dublin, Ireland</option>
+                                <option value="stockholm">Stockholm, Sweden</option>
+                                <option value="prague">Prague, Czech Rep.</option>
+                                <option value="warsaw">Warsaw, Poland</option>
+                            </optgroup>
+                            <optgroup label="🌏 Asia">
+                                <option value="tokyo">Tokyo, Japan</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="hongkong">Hong Kong</option>
+                                <option value="seoul">Seoul, S. Korea</option>
+                                <option value="bangkok">Bangkok, Thailand</option>
+                                <option value="shanghai">Shanghai, China</option>
+                            </optgroup>
+                            <optgroup label="🌍 Other">
+                                <option value="sydney">Sydney, Australia</option>
+                                <option value="toronto">Toronto, Canada</option>
+                                <option value="dubai">Dubai, UAE</option>
+                                <option value="telaviv">Tel Aviv, Israel</option>
+                            </optgroup>
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm text-slate-400 mb-2">Equivalent in</label>
                         <select id="targetCity" class="currency-select w-full px-4 py-3 rounded-xl">
-                            <option value="nyc" selected>📍 New York City, USA</option>
-                            <option value="sf">📍 San Francisco, USA</option>
-                            <option value="london">📍 London, UK</option>
-                            <option value="tokyo">📍 Tokyo, Japan</option>
-                            <option value="sydney">📍 Sydney, Australia</option>
-                            <option value="singapore">📍 Singapore</option>
-                            <option value="dubai">📍 Dubai, UAE</option>
-                            <option value="zurich">📍 Zurich, Switzerland</option>
+                            <optgroup label="🇺🇸 USA">
+                                <option value="nyc" selected>New York City</option>
+                                <option value="sf">San Francisco</option>
+                                <option value="la">Los Angeles</option>
+                                <option value="chicago">Chicago</option>
+                                <option value="miami">Miami</option>
+                                <option value="boston">Boston</option>
+                                <option value="seattle">Seattle</option>
+                                <option value="austin">Austin</option>
+                            </optgroup>
+                            <optgroup label="🇪🇺 Europe">
+                                <option value="london">London, UK</option>
+                                <option value="paris">Paris, France</option>
+                                <option value="berlin">Berlin, Germany</option>
+                                <option value="amsterdam">Amsterdam, Netherlands</option>
+                                <option value="lisbon">Lisbon, Portugal</option>
+                                <option value="madrid">Madrid, Spain</option>
+                                <option value="munich">Munich, Germany</option>
+                                <option value="zurich">Zurich, Switzerland</option>
+                                <option value="dublin">Dublin, Ireland</option>
+                                <option value="stockholm">Stockholm, Sweden</option>
+                                <option value="prague">Prague, Czech Rep.</option>
+                                <option value="warsaw">Warsaw, Poland</option>
+                            </optgroup>
+                            <optgroup label="🌏 Asia">
+                                <option value="tokyo">Tokyo, Japan</option>
+                                <option value="singapore">Singapore</option>
+                                <option value="hongkong">Hong Kong</option>
+                                <option value="seoul">Seoul, S. Korea</option>
+                                <option value="bangkok">Bangkok, Thailand</option>
+                                <option value="shanghai">Shanghai, China</option>
+                            </optgroup>
+                            <optgroup label="🌍 Other">
+                                <option value="sydney">Sydney, Australia</option>
+                                <option value="toronto">Toronto, Canada</option>
+                                <option value="dubai">Dubai, UAE</option>
+                                <option value="telaviv">Tel Aviv, Israel</option>
+                                <option value="capetown">Cape Town, S. Africa</option>
+                                <option value="mexicocity">Mexico City</option>
+                                <option value="saopalo">São Paulo, Brazil</option>
+                            </optgroup>
                         </select>
                         <div id="salaryResult" class="result-card rounded-xl p-4 mt-3 text-center">
                             <p class="text-slate-400 text-sm">Equivalent salary</p>
@@ -325,14 +391,22 @@
 
         // Cost of living index (NYC = 100)
         const costOfLiving = {
-            nyc: 100, sf: 95, london: 85, tokyo: 76, sydney: 73, singapore: 81, dubai: 65, zurich: 106,
-            berlin: 56, paris: 74, amsterdam: 68, lisbon: 46
+            // USA
+            nyc: 100, sf: 95, la: 80, chicago: 72, miami: 75, boston: 85, seattle: 82, austin: 68, denver: 70,
+            // Europe
+            london: 85, paris: 74, berlin: 56, amsterdam: 68, lisbon: 46, madrid: 52, barcelona: 55, munich: 65, vienna: 60, dublin: 72, zurich: 106, geneva: 102, copenhagen: 78, stockholm: 72, oslo: 82, helsinki: 68, milan: 62, rome: 54, prague: 42, warsaw: 38, budapest: 35,
+            // Asia
+            tokyo: 76, singapore: 81, hongkong: 88, seoul: 72, taipei: 58, bangkok: 38, kualalumpur: 35, jakarta: 32, manila: 30, hanoi: 28, shanghai: 62, beijing: 58, shenzhen: 55,
+            // Other
+            sydney: 73, melbourne: 68, toronto: 70, vancouver: 72, dubai: 65, telaviv: 82, capetown: 35, buenosaires: 28, mexicocity: 32, saopalo: 38
         };
 
         // City currencies
         const cityCurrency = {
-            nyc: 'USD', sf: 'USD', london: 'GBP', tokyo: 'JPY', sydney: 'AUD', singapore: 'SGD', dubai: 'AED', zurich: 'CHF',
-            berlin: 'EUR', paris: 'EUR', amsterdam: 'EUR', lisbon: 'EUR'
+            nyc: 'USD', sf: 'USD', la: 'USD', chicago: 'USD', miami: 'USD', boston: 'USD', seattle: 'USD', austin: 'USD', denver: 'USD',
+            london: 'GBP', paris: 'EUR', berlin: 'EUR', amsterdam: 'EUR', lisbon: 'EUR', madrid: 'EUR', barcelona: 'EUR', munich: 'EUR', vienna: 'EUR', dublin: 'EUR', zurich: 'CHF', geneva: 'CHF', copenhagen: 'DKK', stockholm: 'SEK', oslo: 'NOK', helsinki: 'EUR', milan: 'EUR', rome: 'EUR', prague: 'CZK', warsaw: 'PLN', budapest: 'HUF',
+            tokyo: 'JPY', singapore: 'SGD', hongkong: 'HKD', seoul: 'KRW', taipei: 'TWD', bangkok: 'THB', kualalumpur: 'MYR', jakarta: 'IDR', manila: 'PHP', hanoi: 'VND', shanghai: 'CNY', beijing: 'CNY', shenzhen: 'CNY',
+            sydney: 'AUD', melbourne: 'AUD', toronto: 'CAD', vancouver: 'CAD', dubai: 'AED', telaviv: 'ILS', capetown: 'ZAR', buenosaires: 'ARS', mexicocity: 'MXN', saopalo: 'BRL'
         };
 
         // Inflation multipliers (from year to 2026)
@@ -344,7 +418,7 @@
 
         // Travel destinations
         const travelDestinations = [
-            { code: 'EUR', flag: '🇪🇺', name: 'Europe' },
+            { code: 'EUR', flag: '🇪🇺', name: 'Eurozone' },
             { code: 'GBP', flag: '🇬🇧', name: 'UK' },
             { code: 'JPY', flag: '🇯🇵', name: 'Japan' },
             { code: 'THB', flag: '🇹🇭', name: 'Thailand' },
@@ -355,7 +429,19 @@
             { code: 'INR', flag: '🇮🇳', name: 'India' },
             { code: 'KRW', flag: '🇰🇷', name: 'S. Korea' },
             { code: 'SGD', flag: '🇸🇬', name: 'Singapore' },
-            { code: 'AED', flag: '🇦🇪', name: 'UAE' }
+            { code: 'AED', flag: '🇦🇪', name: 'UAE' },
+            { code: 'CHF', flag: '🇨🇭', name: 'Switzerland' },
+            { code: 'NZD', flag: '🇳🇿', name: 'New Zealand' },
+            { code: 'PHP', flag: '🇵🇭', name: 'Philippines' },
+            { code: 'IDR', flag: '🇮🇩', name: 'Indonesia' },
+            { code: 'VND', flag: '🇻🇳', name: 'Vietnam' },
+            { code: 'ZAR', flag: '🇿🇦', name: 'South Africa' },
+            { code: 'TRY', flag: '🇹🇷', name: 'Turkey' },
+            { code: 'PLN', flag: '🇵🇱', name: 'Poland' },
+            { code: 'CZK', flag: '🇨🇿', name: 'Czech Rep.' },
+            { code: 'HUF', flag: '🇭🇺', name: 'Hungary' },
+            { code: 'COP', flag: '🇨🇴', name: 'Colombia' },
+            { code: 'ARS', flag: '🇦🇷', name: 'Argentina' }
         ];
 
         // Initialize
