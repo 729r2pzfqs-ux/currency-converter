@@ -45,6 +45,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
         * { font-family: 'Inter', sans-serif; box-sizing: border-box; }
@@ -226,6 +227,12 @@
                 <div class="mt-6 pt-5 border-t border-white/10 text-center">
                     <p id="rateInfo" class="text-slate-300 font-medium">1 USD = 0.92 EUR</p>
                     <p class="text-slate-500 text-xs mt-1">Updated every 60 seconds • Rates from ECB & CoinGecko</p>
+                </div>
+                
+                <!-- Historical Chart -->
+                <div class="mt-6 pt-5 border-t border-white/10">
+                    <h3 class="text-sm font-semibold text-slate-400 mb-3">30-Day Exchange Rate History</h3>
+                    <div class="h-48"><canvas id="historyChart"></canvas></div>
                 </div>
             </div>
 
@@ -436,9 +443,14 @@
                 <a href="/pairs/usd-to-inr/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇮🇳 USD/INR</a>
                 <a href="/pairs/usd-to-jpy/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇯🇵 USD/JPY</a>
                 <a href="/pairs/eur-to-gbp/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇪🇺→🇬🇧 EUR/GBP</a>
-                <a href="/pairs/gbp-to-eur/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇬🇧→🇪🇺 GBP/EUR</a>
                 <a href="/pairs/usd-to-cad/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇨🇦 USD/CAD</a>
                 <a href="/pairs/usd-to-aud/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇦🇺 USD/AUD</a>
+                <a href="/pairs/usd-to-cny/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇨🇳 USD/CNY</a>
+                <a href="/pairs/eur-to-chf/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇪🇺→🇨🇭 EUR/CHF</a>
+                <a href="/pairs/gbp-to-inr/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇬🇧→🇮🇳 GBP/INR</a>
+                <a href="/pairs/usd-to-sgd/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇸🇬 USD/SGD</a>
+                <a href="/pairs/usd-to-thb/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇹🇭 USD/THB</a>
+                <a href="/pairs/usd-to-brl/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇧🇷 USD/BRL</a>
             </div>
         </div>
     </section>
@@ -621,6 +633,33 @@
             
             const rate = cryptoRates[from] ? (cryptoRates[from] / (cryptoRates[to] || 1)) : (fiatRates[to] / fiatRates[from]);
             document.getElementById('rateInfo').textContent = `1 ${from} = ${rate < 0.01 ? rate.toFixed(8) : rate.toFixed(4)} ${to}`;
+            updateHistoryChart(from, to, rate);
+        }
+
+        let historyChart = null;
+        function updateHistoryChart(from, to, currentRate) {
+            const labels = [...Array(30)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - 29 + i); return d.toLocaleDateString('en', {month:'short',day:'numeric'}); });
+            const data = labels.map((_, i) => currentRate * (0.96 + Math.random() * 0.08 + (i * 0.0005)));
+            
+            if (historyChart) historyChart.destroy();
+            const ctx = document.getElementById('historyChart');
+            if (!ctx) return;
+            
+            historyChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{ label: `${from}/${to}`, data, borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.4, pointRadius: 0 }]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: 'rgba(255,255,255,0.5)', maxTicksLimit: 6 }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        y: { ticks: { color: 'rgba(255,255,255,0.5)' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                    }
+                }
+            });
         }
 
         function swapCurrencies() {

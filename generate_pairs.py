@@ -5,6 +5,7 @@ import os
 
 # Top currency pairs by search volume
 PAIRS = [
+    # Tier 1 - Highest volume
     ('USD', 'EUR', 'US Dollar', 'Euro'),
     ('EUR', 'USD', 'Euro', 'US Dollar'),
     ('GBP', 'USD', 'British Pound', 'US Dollar'),
@@ -25,6 +26,27 @@ PAIRS = [
     ('EUR', 'JPY', 'Euro', 'Japanese Yen'),
     ('GBP', 'JPY', 'British Pound', 'Japanese Yen'),
     ('USD', 'MXN', 'US Dollar', 'Mexican Peso'),
+    # Tier 2 - More pairs
+    ('INR', 'USD', 'Indian Rupee', 'US Dollar'),
+    ('JPY', 'USD', 'Japanese Yen', 'US Dollar'),
+    ('CNY', 'USD', 'Chinese Yuan', 'US Dollar'),
+    ('USD', 'SGD', 'US Dollar', 'Singapore Dollar'),
+    ('EUR', 'AUD', 'Euro', 'Australian Dollar'),
+    ('EUR', 'CAD', 'Euro', 'Canadian Dollar'),
+    ('GBP', 'AUD', 'British Pound', 'Australian Dollar'),
+    ('GBP', 'CAD', 'British Pound', 'Canadian Dollar'),
+    ('USD', 'THB', 'US Dollar', 'Thai Baht'),
+    ('USD', 'KRW', 'US Dollar', 'South Korean Won'),
+    ('USD', 'BRL', 'US Dollar', 'Brazilian Real'),
+    ('EUR', 'BRL', 'Euro', 'Brazilian Real'),
+    ('USD', 'PLN', 'US Dollar', 'Polish Zloty'),
+    ('EUR', 'PLN', 'Euro', 'Polish Zloty'),
+    ('USD', 'SEK', 'US Dollar', 'Swedish Krona'),
+    ('EUR', 'SEK', 'Euro', 'Swedish Krona'),
+    ('USD', 'TRY', 'US Dollar', 'Turkish Lira'),
+    ('EUR', 'TRY', 'Euro', 'Turkish Lira'),
+    ('USD', 'ZAR', 'US Dollar', 'South African Rand'),
+    ('AUD', 'NZD', 'Australian Dollar', 'New Zealand Dollar'),
 ]
 
 FLAGS = {
@@ -32,6 +54,7 @@ FLAGS = {
     'INR': '🇮🇳', 'AUD': '🇦🇺', 'CAD': '🇨🇦', 'CHF': '🇨🇭', 'MXN': '🇲🇽',
     'BRL': '🇧🇷', 'KRW': '🇰🇷', 'SGD': '🇸🇬', 'THB': '🇹🇭', 'SEK': '🇸🇪',
     'PLN': '🇵🇱', 'TRY': '🇹🇷', 'ZAR': '🇿🇦', 'RUB': '🇷🇺', 'HKD': '🇭🇰',
+    'NZD': '🇳🇿',
 }
 
 TEMPLATE = '''<!DOCTYPE html>
