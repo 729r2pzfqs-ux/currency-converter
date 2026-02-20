@@ -25,6 +25,20 @@
     <meta property="og:description" content="Free currency converter with crypto support, travel mode, salary cost-of-living calculator, and inflation adjuster.">
     <meta property="og:type" content="website">
     
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "WebApplication", "name": "Currency Converter", "url": "https://convert-currency.org/", "description": "Free currency converter with crypto, travel mode, salary calculator, and inflation adjuster", "applicationCategory": "FinanceApplication", "operatingSystem": "Any"}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": "How do currency exchange rates work?", "acceptedAnswer": {"@type": "Answer", "text": "Exchange rates are determined by supply and demand in the foreign exchange market. They fluctuate based on economic factors like inflation, interest rates, political stability, and trade balances between countries."}},
+        {"@type": "Question", "name": "What is the best way to convert currency with low fees?", "acceptedAnswer": {"@type": "Answer", "text": "Use online currency converters for rate comparisons, avoid airport exchanges, consider multi-currency cards like Wise or Revolut, and convert larger amounts at once to minimize per-transaction fees."}},
+        {"@type": "Question", "name": "How often do exchange rates change?", "acceptedAnswer": {"@type": "Answer", "text": "Exchange rates change constantly during market hours (24/5 for forex). Our converter updates every 60 seconds to provide near real-time rates."}},
+        {"@type": "Question", "name": "What is cost-of-living adjustment for salaries?", "acceptedAnswer": {"@type": "Answer", "text": "Cost-of-living adjustment compares the purchasing power between cities. A $100K salary in New York might equal $60K in Bangkok in terms of what you can afford."}},
+        {"@type": "Question", "name": "How does inflation affect currency value?", "acceptedAnswer": {"@type": "Answer", "text": "Inflation reduces purchasing power over time. $100 in 2000 would need to be about $180 today to buy the same goods, due to cumulative inflation of roughly 80%."}}
+    ]}
+    </script>
+    
     <link rel="icon" href="favicon.ico" sizes="32x32">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310B981'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E💱%3C/text%3E%3C/svg%3E">
     
@@ -405,6 +419,54 @@
                     </div>
                     <h3 class="font-bold mb-2">100% Private</h3>
                     <p class="text-slate-400 text-sm">All calculations happen in your browser. No data stored.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Currency Pairs -->
+    <section class="px-4 py-12">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6 text-center">Popular Currency Pairs</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                <a href="/pairs/usd-to-eur/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇪🇺 USD/EUR</a>
+                <a href="/pairs/eur-to-usd/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇪🇺→🇺🇸 EUR/USD</a>
+                <a href="/pairs/gbp-to-usd/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇬🇧→🇺🇸 GBP/USD</a>
+                <a href="/pairs/usd-to-gbp/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇬🇧 USD/GBP</a>
+                <a href="/pairs/usd-to-inr/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇮🇳 USD/INR</a>
+                <a href="/pairs/usd-to-jpy/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇯🇵 USD/JPY</a>
+                <a href="/pairs/eur-to-gbp/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇪🇺→🇬🇧 EUR/GBP</a>
+                <a href="/pairs/gbp-to-eur/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇬🇧→🇪🇺 GBP/EUR</a>
+                <a href="/pairs/usd-to-cad/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇨🇦 USD/CAD</a>
+                <a href="/pairs/usd-to-aud/" class="glass rounded-xl p-4 text-center hover:bg-white/10 transition">🇺🇸→🇦🇺 USD/AUD</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="px-4 py-12 bg-white/5">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-bold mb-6 text-center">Frequently Asked Questions</h2>
+            <div class="space-y-4">
+                <div class="glass rounded-xl p-5">
+                    <h3 class="font-semibold text-emerald-400">How do currency exchange rates work?</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Exchange rates are determined by supply and demand in the foreign exchange market. They fluctuate based on economic factors like inflation, interest rates, political stability, and trade balances between countries.</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <h3 class="font-semibold text-emerald-400">What is the best way to convert currency with low fees?</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Use online currency converters for rate comparisons, avoid airport exchanges (they charge 10-15% markup), consider multi-currency cards like Wise or Revolut, and convert larger amounts at once to minimize per-transaction fees.</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <h3 class="font-semibold text-emerald-400">How often do exchange rates change?</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Exchange rates change constantly during forex market hours (24 hours a day, 5 days a week). Our converter updates every 60 seconds to provide near real-time rates from the European Central Bank.</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <h3 class="font-semibold text-emerald-400">What is cost-of-living adjustment for salaries?</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Cost-of-living adjustment compares the purchasing power between cities. A $100,000 salary in New York might equal $60,000 in Bangkok in terms of what you can afford, due to differences in housing, food, and services costs.</p>
+                </div>
+                <div class="glass rounded-xl p-5">
+                    <h3 class="font-semibold text-emerald-400">How does inflation affect currency value?</h3>
+                    <p class="text-slate-400 mt-2 text-sm">Inflation reduces purchasing power over time. $100 in 2000 would need to be about $180 today to buy the same goods, due to cumulative inflation of roughly 80%. Our inflation calculator helps you understand this impact.</p>
                 </div>
             </div>
         </div>
