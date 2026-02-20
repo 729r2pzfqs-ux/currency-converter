@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Fee Estimator | Compare Conversion Costs</title>
+    <meta name="description" content="Compare currency exchange fees across banks, credit cards, ATMs, and services like Wise and Revolut. Find the cheapest way to convert money.">
+    <link rel="canonical" href="https://convert-currency.org/fee-estimator/">
+    
+    <meta property="og:title" content="Currency Exchange Fee Estimator | Compare Costs">
+    <meta property="og:description" content="Find the cheapest way to convert currency. Compare fees from banks, cards, and money transfer services.">
+    <meta property="og:url" content="https://convert-currency.org/fee-estimator/">
+    
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "WebApplication", "name": "Currency Fee Estimator", "url": "https://convert-currency.org/fee-estimator/", "description": "Compare currency exchange fees and find the cheapest conversion method", "applicationCategory": "FinanceApplication"}
+    </script>
+    <script type="application/ld+json">
+    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": "What is the cheapest way to exchange currency?", "acceptedAnswer": {"@type": "Answer", "text": "Online services like Wise and Revolut typically offer the lowest fees (0.3-1%). Banks charge 2-5%, credit cards 1-3%, and airport exchanges can charge 8-15%."}},
+        {"@type": "Question", "name": "Do banks charge fees for currency exchange?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, most banks charge 2-5% markup on exchange rates plus possible flat fees of $5-15 per transaction."}},
+        {"@type": "Question", "name": "Is it better to exchange money before traveling?", "acceptedAnswer": {"@type": "Answer", "text": "Usually yes. Exchanging at home through online services gives you better rates than airport kiosks or tourist areas abroad."}},
+        {"@type": "Question", "name": "What are hidden fees in currency exchange?", "acceptedAnswer": {"@type": "Answer", "text": "Hidden fees include: poor exchange rates (the biggest cost), flat transaction fees, percentage fees, ATM withdrawal fees, and 'no commission' services that hide fees in the rate."}}
+    ]}
+    </script>
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310B981'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E💱%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); min-height: 100vh; }
+        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        .input-dark { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; }
+        .input-dark:focus { border-color: #10B981; outline: none; }
+        .best { border-color: #10B981 !important; background: rgba(16,185,129,0.1) !important; }
+        .worst { border-color: #ef4444 !important; background: rgba(239,68,68,0.05) !important; }
+    </style>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KEM4TDVK9"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1KEM4TDVK9');</script>
+</head>
+<body class="text-white">
+    <header class="py-6 px-4">
+        <div class="max-w-4xl mx-auto flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center text-xl">💱</div>
+                <span class="text-xl font-bold">Currency Converter</span>
+            </a>
+            <a href="/" class="text-emerald-400 hover:text-emerald-300 text-sm">← Back to Converter</a>
+        </div>
+    </header>
+
+    <main class="px-4 pb-16">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-4xl font-bold mb-2">💰 Currency Exchange Fee Estimator</h1>
+                <p class="text-slate-400">Compare the real cost of converting money across different methods</p>
+            </div>
+
+            <!-- Calculator -->
+            <div class="glass rounded-2xl p-6 md:p-8 mb-8">
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">Amount</label>
+                        <input type="number" id="amount" value="1000" class="input-dark w-full px-4 py-3 rounded-xl text-xl font-bold">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">From</label>
+                        <select id="fromCurrency" class="input-dark w-full px-4 py-3 rounded-xl">
+                            <option value="USD" selected>🇺🇸 USD</option>
+                            <option value="EUR">🇪🇺 EUR</option>
+                            <option value="GBP">🇬🇧 GBP</option>
+                            <option value="CAD">🇨🇦 CAD</option>
+                            <option value="AUD">🇦🇺 AUD</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-slate-400 mb-2">To</label>
+                        <select id="toCurrency" class="input-dark w-full px-4 py-3 rounded-xl">
+                            <option value="EUR" selected>🇪🇺 EUR</option>
+                            <option value="USD">🇺🇸 USD</option>
+                            <option value="GBP">🇬🇧 GBP</option>
+                            <option value="JPY">🇯🇵 JPY</option>
+                            <option value="INR">🇮🇳 INR</option>
+                            <option value="MXN">🇲🇽 MXN</option>
+                            <option value="THB">🇹🇭 THB</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center p-4 bg-white/5 rounded-xl mb-6">
+                    <p class="text-slate-400 text-sm">Mid-market rate (the "real" rate)</p>
+                    <p id="midRate" class="text-2xl font-bold text-emerald-400">1 USD = 0.92 EUR</p>
+                    <p id="midResult" class="text-slate-300">1,000 USD = 920.00 EUR</p>
+                </div>
+
+                <h2 class="text-lg font-semibold mb-4">Compare Exchange Methods</h2>
+                <div id="results" class="space-y-3">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+
+            <!-- Explanation -->
+            <div class="glass rounded-2xl p-6 mb-8">
+                <h2 class="text-xl font-bold mb-4">Understanding Exchange Fees</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="font-semibold text-emerald-400 mb-2">💡 The Hidden Cost</h3>
+                        <p class="text-slate-400 text-sm">Most exchange services advertise "0% commission" but hide fees in the exchange rate. A 3% worse rate on $1,000 costs you $30 — same as a $30 fee.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-emerald-400 mb-2">🎯 Best Practice</h3>
+                        <p class="text-slate-400 text-sm">Always compare what you'll actually receive, not just the advertised rate. Use services like Wise or Revolut for best rates on most currencies.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fee Breakdown by Method -->
+            <div class="glass rounded-2xl p-6 mb-8">
+                <h2 class="text-xl font-bold mb-4">Typical Fees by Method</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-emerald-500/10 rounded-xl border border-emerald-500/30">
+                        <div>
+                            <p class="font-semibold">Wise / Revolut</p>
+                            <p class="text-slate-400 text-sm">Online transfer services</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-emerald-400 font-bold">0.3% - 1%</p>
+                            <p class="text-slate-500 text-xs">Best rates</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                        <div>
+                            <p class="font-semibold">Credit Card (no FX fee)</p>
+                            <p class="text-slate-400 text-sm">Visa/Mastercard rate + card fee</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-amber-400 font-bold">0% - 1%</p>
+                            <p class="text-slate-500 text-xs">If no foreign transaction fee</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                        <div>
+                            <p class="font-semibold">Credit Card (with FX fee)</p>
+                            <p class="text-slate-400 text-sm">Most standard cards</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-amber-400 font-bold">1% - 3%</p>
+                            <p class="text-slate-500 text-xs">Foreign transaction fee</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                        <div>
+                            <p class="font-semibold">Bank Transfer / Branch</p>
+                            <p class="text-slate-400 text-sm">Traditional bank exchange</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-orange-400 font-bold">2% - 5%</p>
+                            <p class="text-slate-500 text-xs">+ possible flat fee</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white/5 rounded-xl">
+                        <div>
+                            <p class="font-semibold">ATM Abroad</p>
+                            <p class="text-slate-400 text-sm">Cash withdrawal overseas</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-orange-400 font-bold">3% - 5%</p>
+                            <p class="text-slate-500 text-xs">+ ATM fee ($3-5)</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-red-500/10 rounded-xl border border-red-500/30">
+                        <div>
+                            <p class="font-semibold">Airport / Hotel Exchange</p>
+                            <p class="text-slate-400 text-sm">Convenience locations</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-red-400 font-bold">8% - 15%</p>
+                            <p class="text-slate-500 text-xs">Avoid if possible</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQs -->
+            <div class="glass rounded-2xl p-6">
+                <h2 class="text-xl font-bold mb-4">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-semibold text-emerald-400">What is the cheapest way to exchange currency?</h3>
+                        <p class="text-slate-400 mt-1 text-sm">Online services like Wise and Revolut typically offer the lowest fees (0.3-1%). They use the mid-market rate with a small transparent fee. Banks charge 2-5%, and airport exchanges can charge 8-15%.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-emerald-400">Do banks charge fees for currency exchange?</h3>
+                        <p class="text-slate-400 mt-1 text-sm">Yes, most banks charge 2-5% markup on exchange rates. This is often hidden — they show a worse rate rather than listing a fee. Some also charge flat fees of $5-15 per transaction.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-emerald-400">Is it better to exchange money before traveling?</h3>
+                        <p class="text-slate-400 mt-1 text-sm">Usually yes. Exchanging at home through online services gives better rates than airport kiosks or tourist areas abroad. However, using a no-FX-fee credit card abroad can be equally good.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-emerald-400">What are hidden fees in currency exchange?</h3>
+                        <p class="text-slate-400 mt-1 text-sm">The biggest hidden fee is a poor exchange rate — "0% commission" services often give you 5-10% worse rates. Other hidden fees include: ATM operator fees, dynamic currency conversion (always choose local currency), and minimum transaction fees.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-emerald-400">Should I use my credit card or cash abroad?</h3>
+                        <p class="text-slate-400 mt-1 text-sm">If you have a no-foreign-transaction-fee card, use it — you'll get near-perfect rates. Otherwise, get cash from a Wise or Revolut card at ATMs, or exchange before your trip. Avoid hotel and airport exchanges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-8 px-4 border-t border-white/10">
+        <div class="max-w-4xl mx-auto text-center text-slate-500 text-sm">
+            <p>© 2026 convert-currency.org • <a href="/" class="text-emerald-400 hover:underline">Currency Converter</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const rates = { USD: 1, EUR: 0.92, GBP: 0.79, JPY: 150, INR: 83, CAD: 1.36, AUD: 1.53, MXN: 17.1, THB: 35 };
+        
+        const methods = [
+            { name: 'Wise', icon: '💚', feePercent: 0.5, flatFee: 0, desc: 'Online transfer' },
+            { name: 'Revolut', icon: '💜', feePercent: 0.4, flatFee: 0, desc: 'App-based' },
+            { name: 'Credit Card (no FX fee)', icon: '💳', feePercent: 0, flatFee: 0, desc: 'Travel cards' },
+            { name: 'Credit Card (standard)', icon: '💳', feePercent: 2.5, flatFee: 0, desc: 'With FX fee' },
+            { name: 'Bank Transfer', icon: '🏦', feePercent: 3.5, flatFee: 10, desc: 'Traditional bank' },
+            { name: 'ATM Abroad', icon: '🏧', feePercent: 4, flatFee: 4, desc: 'Cash withdrawal' },
+            { name: 'Airport Exchange', icon: '✈️', feePercent: 12, flatFee: 5, desc: 'Avoid!' },
+        ];
+
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amount').value) || 1000;
+            const from = document.getElementById('fromCurrency').value;
+            const to = document.getElementById('toCurrency').value;
+            
+            const midRate = rates[to] / rates[from];
+            const midResult = amount * midRate;
+            
+            document.getElementById('midRate').textContent = `1 ${from} = ${midRate.toFixed(4)} ${to}`;
+            document.getElementById('midResult').textContent = `${amount.toLocaleString()} ${from} = ${midResult.toFixed(2)} ${to}`;
+            
+            const results = methods.map(m => {
+                const fee = (amount * m.feePercent / 100) + m.flatFee;
+                const feeInTo = fee * midRate;
+                const youGet = midResult - feeInTo;
+                const effectiveRate = youGet / amount;
+                return { ...m, fee, youGet, effectiveRate, feePercent: ((midResult - youGet) / midResult * 100) };
+            }).sort((a, b) => b.youGet - a.youGet);
+            
+            const best = results[0].youGet;
+            const worst = results[results.length - 1].youGet;
+            
+            document.getElementById('results').innerHTML = results.map((r, i) => {
+                const isBest = r.youGet === best;
+                const isWorst = r.youGet === worst;
+                const diff = best - r.youGet;
+                return `
+                    <div class="flex items-center justify-between p-4 rounded-xl border ${isBest ? 'best' : isWorst ? 'worst' : 'border-white/10 bg-white/5'}">
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">${r.icon}</span>
+                            <div>
+                                <p class="font-semibold">${r.name} ${isBest ? '<span class="text-emerald-400 text-xs ml-2">✓ BEST</span>' : ''}</p>
+                                <p class="text-slate-500 text-xs">${r.desc}</p>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-bold ${isBest ? 'text-emerald-400' : isWorst ? 'text-red-400' : ''}">${r.youGet.toFixed(2)} ${to}</p>
+                            <p class="text-slate-500 text-xs">${r.feePercent.toFixed(1)}% fee${diff > 0 ? ` • -${diff.toFixed(2)} ${to}` : ''}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', calculate));
+        calculate();
+        lucide.createIcons();
+    </script>
+</body>
+</html>
