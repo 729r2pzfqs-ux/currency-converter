@@ -1,28 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-<url>
-  <loc>https://convert-currency.org/</loc>
-  <xhtml:link rel="alternate" hreflang="en" href="https://convert-currency.org/"/>
-  <xhtml:link rel="alternate" hreflang="de" href="https://convert-currency.org/de.html"/>
-  <xhtml:link rel="alternate" hreflang="es" href="https://convert-currency.org/es.html"/>
-  <xhtml:link rel="alternate" hreflang="fr" href="https://convert-currency.org/fr.html"/>
-  <xhtml:link rel="alternate" hreflang="pt" href="https://convert-currency.org/pt.html"/>
-  <xhtml:link rel="alternate" hreflang="zh" href="https://convert-currency.org/zh.html"/>
-  <xhtml:link rel="alternate" hreflang="ja" href="https://convert-currency.org/ja.html"/>
-  <xhtml:link rel="alternate" hreflang="hi" href="https://convert-currency.org/hi.html"/>
-  <xhtml:link rel="alternate" hreflang="ar" href="https://convert-currency.org/ar.html"/>
-  <xhtml:link rel="alternate" hreflang="ru" href="https://convert-currency.org/ru.html"/>
-  <xhtml:link rel="alternate" hreflang="tr" href="https://convert-currency.org/tr.html"/>
-  <xhtml:link rel="alternate" hreflang="x-default" href="https://convert-currency.org/"/>
-</url>
-<url><loc>https://convert-currency.org/de.html</loc></url>
-<url><loc>https://convert-currency.org/es.html</loc></url>
-<url><loc>https://convert-currency.org/fr.html</loc></url>
-<url><loc>https://convert-currency.org/pt.html</loc></url>
-<url><loc>https://convert-currency.org/zh.html</loc></url>
-<url><loc>https://convert-currency.org/ja.html</loc></url>
-<url><loc>https://convert-currency.org/hi.html</loc></url>
-<url><loc>https://convert-currency.org/ar.html</loc></url>
-<url><loc>https://convert-currency.org/ru.html</loc></url>
-<url><loc>https://convert-currency.org/tr.html</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main pages -->
+  <url><loc>https://convert-currency.org/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://convert-currency.org/de.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/es.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/fr.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/pt.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/zh.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/ja.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/hi.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/ar.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/ru.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://convert-currency.org/tr.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  
+  <!-- Currency pair pages -->
+  <url><loc>https://convert-currency.org/pairs/usd-to-eur/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/eur-to-usd/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/gbp-to-usd/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-gbp/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-inr/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/eur-to-gbp/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/gbp-to-eur/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-jpy/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/eur-to-inr/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/gbp-to-inr/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-cad/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-aud/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/eur-to-chf/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-chf/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/aud-to-usd/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/cad-to-usd/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-cny/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/eur-to-jpy/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/gbp-to-jpy/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
+  <url><loc>https://convert-currency.org/pairs/usd-to-mxn/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>
 </urlset>
