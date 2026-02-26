@@ -40,7 +40,11 @@
     ]}
     </script>
     
-    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2310B981'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='white'%3E💱%3C/text%3E%3C/svg%3E">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -118,7 +122,7 @@
     <section class="px-4 py-8">
         <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-3xl md:text-4xl font-bold mb-3">Universal Currency Converter</h1>
-            <p class="text-slate-400">Crypto + Fiat • Travel Mode • Salary Calculator • Inflation Adjuster</p>
+            <p class="text-slate-300">Crypto + Fiat • Travel Mode • Salary Calculator • Inflation Adjuster</p>
         </div>
     </section>
 
@@ -147,7 +151,7 @@
                 <div class="flex flex-col lg:flex-row lg:items-end gap-4 lg:gap-6">
                     <!-- From -->
                     <div class="flex-1">
-                        <label class="block text-sm text-slate-400 mb-2">From</label>
+                        <label class="block text-sm text-slate-300 mb-2">From</label>
                         <input type="number" id="fromAmount" value="1000" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3" placeholder="Amount">
                         <select id="fromCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                             <optgroup label="Fiat">
@@ -190,7 +194,7 @@
 
                     <!-- To -->
                     <div class="flex-1">
-                        <label class="block text-sm text-slate-400 mb-2">To</label>
+                        <label class="block text-sm text-slate-300 mb-2">To</label>
                         <input type="text" id="toAmount" readonly class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3 bg-emerald-500/10 border-emerald-500/30" placeholder="Result">
                         <select id="toCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                             <optgroup label="Fiat">
@@ -227,12 +231,12 @@
                 <!-- Exchange Rate Info -->
                 <div class="mt-6 pt-5 border-t border-white/10 text-center">
                     <p id="rateInfo" class="text-slate-300 font-medium">1 USD = 0.92 EUR</p>
-                    <p class="text-slate-500 text-xs mt-1">Updated every 60 seconds • Rates from ECB & CoinGecko</p>
+                    <p class="text-slate-300 text-xs mt-1">Updated every 60 seconds • Rates from ECB & CoinGecko</p>
                 </div>
                 
                 <!-- Historical Chart -->
                 <div class="mt-6 pt-5 border-t border-white/10">
-                    <h3 class="text-sm font-semibold text-slate-400 mb-3">30-Day Exchange Rate History</h3>
+                    <h3 class="text-sm font-semibold text-slate-300 mb-3">30-Day Exchange Rate History</h3>
                     <div class="h-48"><canvas id="historyChart"></canvas></div>
                 </div>
             </div>
@@ -240,7 +244,7 @@
             <!-- Travel Mode -->
             <div id="panel-travel" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="mb-6">
-                    <label class="block text-sm text-slate-400 mb-2">I have</label>
+                    <label class="block text-sm text-slate-300 mb-2">I have</label>
                     <input type="number" id="travelAmount" value="500" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3" placeholder="Amount">
                     <select id="travelCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium">
                         <option value="USD" selected>🇺🇸 USD</option>
@@ -264,7 +268,7 @@
             <div id="panel-salary" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="space-y-5 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">My salary</label>
+                        <label class="block text-sm text-slate-300 mb-2">My salary</label>
                         <input type="number" id="salaryAmount" value="80000" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
                         <select id="salaryCurrency" class="currency-select w-full px-4 py-3.5 rounded-xl font-medium mb-3">
                             <option value="USD">🇺🇸 USD</option>
@@ -313,7 +317,7 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Equivalent in</label>
+                        <label class="block text-sm text-slate-300 mb-2">Equivalent in</label>
                         <select id="targetCity" class="currency-select w-full px-4 py-3 rounded-xl">
                             <optgroup label="🇺🇸 USA">
                                 <option value="nyc" selected>New York City</option>
@@ -358,9 +362,9 @@
                             </optgroup>
                         </select>
                         <div id="salaryResult" class="result-card rounded-xl p-4 mt-3 text-center">
-                            <p class="text-slate-400 text-sm">Equivalent salary</p>
+                            <p class="text-slate-300 text-sm">Equivalent salary</p>
                             <p class="text-3xl font-bold text-emerald-400">$142,500</p>
-                            <p class="text-slate-500 text-xs mt-1">Adjusted for cost of living (+78%)</p>
+                            <p class="text-slate-300 text-xs mt-1">Adjusted for cost of living (+78%)</p>
                         </div>
                     </div>
                 </div>
@@ -370,7 +374,7 @@
             <div id="panel-inflation" class="glass rounded-2xl p-5 md:p-8 hidden">
                 <div class="space-y-5">
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Amount in the past</label>
+                        <label class="block text-sm text-slate-300 mb-2">Amount in the past</label>
                         <input type="number" id="inflationAmount" value="100" class="input-dark w-full px-4 py-3.5 rounded-xl text-xl font-bold mb-3">
                         <div class="grid grid-cols-2 gap-3">
                             <select id="inflationCurrency" class="currency-select px-4 py-3.5 rounded-xl font-medium">
@@ -390,11 +394,11 @@
                         </div>
                     </div>
                     <div>
-                        <label class="block text-sm text-slate-400 mb-2">Would be worth today</label>
+                        <label class="block text-sm text-slate-300 mb-2">Would be worth today</label>
                         <div id="inflationResult" class="result-card rounded-xl p-6 text-center">
                             <p class="text-4xl font-bold text-emerald-400">$142.50</p>
-                            <p class="text-slate-400 text-sm mt-2">+42.5% cumulative inflation</p>
-                            <p class="text-slate-500 text-xs mt-1">~2.9% average per year</p>
+                            <p class="text-slate-300 text-sm mt-2">+42.5% cumulative inflation</p>
+                            <p class="text-slate-300 text-xs mt-1">~2.9% average per year</p>
                         </div>
                     </div>
                 </div>
@@ -412,21 +416,21 @@
                         <i data-lucide="bitcoin" class="w-6 h-6 text-emerald-400"></i>
                     </div>
                     <h3 class="font-bold mb-2">Crypto + Fiat</h3>
-                    <p class="text-slate-400 text-sm">Convert between traditional currencies and crypto in one place.</p>
+                    <p class="text-slate-300 text-sm">Convert between traditional currencies and crypto in one place.</p>
                 </div>
                 <div class="glass rounded-xl p-6 text-center">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="globe" class="w-6 h-6 text-emerald-400"></i>
                     </div>
                     <h3 class="font-bold mb-2">150+ Currencies</h3>
-                    <p class="text-slate-400 text-sm">All major world currencies with real-time exchange rates.</p>
+                    <p class="text-slate-300 text-sm">All major world currencies with real-time exchange rates.</p>
                 </div>
                 <div class="glass rounded-xl p-6 text-center">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/20 flex items-center justify-center mx-auto mb-4">
                         <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
                     </div>
                     <h3 class="font-bold mb-2">100% Private</h3>
-                    <p class="text-slate-400 text-sm">All calculations happen in your browser. No data stored.</p>
+                    <p class="text-slate-300 text-sm">All calculations happen in your browser. No data stored.</p>
                 </div>
             </div>
         </div>
@@ -440,22 +444,22 @@
                 <a href="/fee-estimator/" class="glass rounded-xl p-5 hover:bg-white/10 transition">
                     <span class="text-2xl">💰</span>
                     <h3 class="font-semibold mt-2">Fee Estimator</h3>
-                    <p class="text-slate-400 text-sm mt-1">Compare exchange costs across methods</p>
+                    <p class="text-slate-300 text-sm mt-1">Compare exchange costs across methods</p>
                 </a>
                 <a href="/articles/how-exchange-rates-work/" class="glass rounded-xl p-5 hover:bg-white/10 transition">
                     <span class="text-2xl">📊</span>
                     <h3 class="font-semibold mt-2">How Rates Work</h3>
-                    <p class="text-slate-400 text-sm mt-1">Understanding exchange rate mechanics</p>
+                    <p class="text-slate-300 text-sm mt-1">Understanding exchange rate mechanics</p>
                 </a>
                 <a href="/articles/convert-currency-low-fees/" class="glass rounded-xl p-5 hover:bg-white/10 transition">
                     <span class="text-2xl">💸</span>
                     <h3 class="font-semibold mt-2">Low Fee Guide</h3>
-                    <p class="text-slate-400 text-sm mt-1">Best ways to convert currency cheaply</p>
+                    <p class="text-slate-300 text-sm mt-1">Best ways to convert currency cheaply</p>
                 </a>
                 <a href="/articles/currency-tips-traveling/" class="glass rounded-xl p-5 hover:bg-white/10 transition">
                     <span class="text-2xl">✈️</span>
                     <h3 class="font-semibold mt-2">Travel Tips</h3>
-                    <p class="text-slate-400 text-sm mt-1">Essential money tips for travelers</p>
+                    <p class="text-slate-300 text-sm mt-1">Essential money tips for travelers</p>
                 </a>
             </div>
         </div>
@@ -492,23 +496,23 @@
             <div class="space-y-4">
                 <div class="glass rounded-xl p-5">
                     <h3 class="font-semibold text-emerald-400">How do currency exchange rates work?</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Exchange rates are determined by supply and demand in the foreign exchange market. They fluctuate based on economic factors like inflation, interest rates, political stability, and trade balances between countries.</p>
+                    <p class="text-slate-300 mt-2 text-sm">Exchange rates are determined by supply and demand in the foreign exchange market. They fluctuate based on economic factors like inflation, interest rates, political stability, and trade balances between countries.</p>
                 </div>
                 <div class="glass rounded-xl p-5">
                     <h3 class="font-semibold text-emerald-400">What is the best way to convert currency with low fees?</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Use online currency converters for rate comparisons, avoid airport exchanges (they charge 10-15% markup), consider multi-currency cards like Wise or Revolut, and convert larger amounts at once to minimize per-transaction fees.</p>
+                    <p class="text-slate-300 mt-2 text-sm">Use online currency converters for rate comparisons, avoid airport exchanges (they charge 10-15% markup), consider multi-currency cards like Wise or Revolut, and convert larger amounts at once to minimize per-transaction fees.</p>
                 </div>
                 <div class="glass rounded-xl p-5">
                     <h3 class="font-semibold text-emerald-400">How often do exchange rates change?</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Exchange rates change constantly during forex market hours (24 hours a day, 5 days a week). Our converter updates every 60 seconds to provide near real-time rates from the European Central Bank.</p>
+                    <p class="text-slate-300 mt-2 text-sm">Exchange rates change constantly during forex market hours (24 hours a day, 5 days a week). Our converter updates every 60 seconds to provide near real-time rates from the European Central Bank.</p>
                 </div>
                 <div class="glass rounded-xl p-5">
                     <h3 class="font-semibold text-emerald-400">What is cost-of-living adjustment for salaries?</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Cost-of-living adjustment compares the purchasing power between cities. A $100,000 salary in New York might equal $60,000 in Bangkok in terms of what you can afford, due to differences in housing, food, and services costs.</p>
+                    <p class="text-slate-300 mt-2 text-sm">Cost-of-living adjustment compares the purchasing power between cities. A $100,000 salary in New York might equal $60,000 in Bangkok in terms of what you can afford, due to differences in housing, food, and services costs.</p>
                 </div>
                 <div class="glass rounded-xl p-5">
                     <h3 class="font-semibold text-emerald-400">How does inflation affect currency value?</h3>
-                    <p class="text-slate-400 mt-2 text-sm">Inflation reduces purchasing power over time. $100 in 2000 would need to be about $180 today to buy the same goods, due to cumulative inflation of roughly 80%. Our inflation calculator helps you understand this impact.</p>
+                    <p class="text-slate-300 mt-2 text-sm">Inflation reduces purchasing power over time. $100 in 2000 would need to be about $180 today to buy the same goods, due to cumulative inflation of roughly 80%. Our inflation calculator helps you understand this impact.</p>
                 </div>
             </div>
         </div>
@@ -516,7 +520,7 @@
 
     <!-- Footer -->
     <footer class="py-8 px-4 border-t border-white/10">
-        <div class="max-w-4xl mx-auto text-center text-slate-500 text-sm">
+        <div class="max-w-4xl mx-auto text-center text-slate-300 text-sm">
             <p>© 2026 Currency Converter — Free Online Currency Calculator</p>
         </div>
     </footer>
@@ -709,7 +713,7 @@
                 return `<div class="travel-card rounded-xl p-4 text-center">
                     <span class="text-2xl">${dest.flag}</span>
                     <p class="font-bold mt-1">${value.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')} ${dest.code}</p>
-                    <p class="text-slate-500 text-xs">${dest.name}</p>
+                    <p class="text-slate-300 text-xs">${dest.name}</p>
                 </div>`;
             }).join('');
             document.getElementById('travelResults').innerHTML = html;
@@ -733,9 +737,9 @@
             const symbol = { USD: '$', EUR: '€', GBP: '£', JPY: '¥', AUD: 'A$', SGD: 'S$', AED: 'د.إ', CHF: 'CHF' }[toCurr] || '$';
             
             document.getElementById('salaryResult').innerHTML = `
-                <p class="text-slate-400 text-sm">Equivalent salary</p>
+                <p class="text-slate-300 text-sm">Equivalent salary</p>
                 <p class="text-3xl font-bold text-emerald-400">${symbol}${final.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</p>
-                <p class="text-slate-500 text-xs mt-1">Adjusted for cost of living (${diff >= 0 ? '+' : ''}${diff.toFixed(0)}%)</p>
+                <p class="text-slate-300 text-xs mt-1">Adjusted for cost of living (${diff >= 0 ? '+' : ''}${diff.toFixed(0)}%)</p>
             `;
         }
 
@@ -754,8 +758,8 @@
             
             document.getElementById('inflationResult').innerHTML = `
                 <p class="text-4xl font-bold text-emerald-400">${symbol}${result.toFixed(2)}</p>
-                <p class="text-slate-400 text-sm mt-2">+${pctChange.toFixed(1)}% cumulative inflation</p>
-                <p class="text-slate-500 text-xs mt-1">~${avgPerYear.toFixed(1)}% average per year</p>
+                <p class="text-slate-300 text-sm mt-2">+${pctChange.toFixed(1)}% cumulative inflation</p>
+                <p class="text-slate-300 text-xs mt-1">~${avgPerYear.toFixed(1)}% average per year</p>
             `;
         }
     </script>
