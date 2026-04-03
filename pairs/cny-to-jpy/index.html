@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CNY to JPY Converter | Chinese Yuan to Japanese Yen Exchange Rate</title>
     <meta name="description" content="Convert CNY to JPY with live exchange rates. Free Chinese Yuan to Japanese Yen calculator updated every 60 seconds.">
-    <link rel="canonical" href="https://convert-currency.org/cny-to-jpy/">
+    <link rel="canonical" href="https://convert-currency.org/pairs/cny-to-jpy/">
     <meta property="og:title" content="CNY to JPY Converter | Live Exchange Rate">
     <meta property="og:description" content="Convert Chinese Yuan to Japanese Yen instantly with live rates.">
-    <meta property="og:url" content="https://convert-currency.org/cny-to-jpy/">
+    <meta property="og:url" content="https://convert-currency.org/pairs/cny-to-jpy/">
     
     <script type="application/ld+json">
     {
@@ -49,9 +49,7 @@
         .currency-select { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; }
     </style>
     
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KEM4TDVK9"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-1KEM4TDVK9');</script>
-</head>
+    </head>
 <body class="text-white">
     <header class="py-6 px-4">
         <div class="max-w-3xl mx-auto flex items-center justify-between">
@@ -201,5 +199,21 @@
         setInterval(fetchRates, 60000);
         lucide.createIcons();
     </script>
+<!-- GDPR Cookie Consent -->
+<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:16px 24px;z-index:9999;font-family:system-ui,sans-serif;font-size:14px;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+    <p style="margin:0;flex:1;min-width:200px;">We use cookies for analytics. By clicking "Accept", you consent to our use of cookies.</p>
+    <div style="display:flex;gap:8px;">
+      <button onclick="acceptCookies()" style="background:#10b981;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:14px;">Accept</button>
+      <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #555;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:14px;">Decline</button>
+    </div>
+  </div>
+</div>
+<script>
+function loadGA(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-1KEM4TDVK9';document.head.appendChild(s);s.onload=function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1KEM4TDVK9');};}
+function acceptCookies(){localStorage.setItem('convertcurrency-consent','granted');document.getElementById('cookie-consent').style.display='none';loadGA();}
+function declineCookies(){localStorage.setItem('convertcurrency-consent','denied');document.getElementById('cookie-consent').style.display='none';}
+(function(){var c=localStorage.getItem('convertcurrency-consent');if(c==='granted'){loadGA();}else if(!c){document.getElementById('cookie-consent').style.display='block';}})();
+</script>
 </body>
 </html>
