@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <title>Page Not Found | Convert Currency</title>
   <link rel="icon" href="/favicon.ico">
   <style>
@@ -12,31 +13,96 @@
     h1 { font-size: 5rem; margin-bottom: 1rem; }
     h2 { font-size: 1.5rem; margin-bottom: 1rem; }
     p { color: var(--muted); margin-bottom: 2rem; max-width: 400px; }
+    .redirect-info { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1rem; margin: 1rem auto; max-width: 400px; font-size: 0.9rem; color: #1e40af; display: none; }
     a { color: var(--primary); text-decoration: none; font-weight: 600; }
     .btn { background: var(--primary); color: white; padding: 0.75rem 1.5rem; border-radius: 0.5rem; display: inline-block; }
     .btn:hover { background: #1d4ed8; }
+    .links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
   </style>
 </head>
 <body>
   <h1>💱</h1>
   <h2>Page Not Found</h2>
-  <p>The page you're looking for doesn't exist. Try our currency converter instead.</p>
-  <a href="/" class="btn">Go to Converter</a>
-<!-- GDPR Cookie Consent -->
-<div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:16px 24px;z-index:9999;font-family:system-ui,sans-serif;font-size:14px;">
-  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-    <p style="margin:0;flex:1;min-width:200px;">We use cookies for analytics. By clicking "Accept", you consent to our use of cookies.</p>
-    <div style="display:flex;gap:8px;">
-      <button onclick="acceptCookies()" style="background:#10b981;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:14px;">Accept</button>
-      <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #555;padding:8px 20px;border-radius:6px;cursor:pointer;font-size:14px;">Decline</button>
+  <p>The page you're looking for doesn't exist or may have moved.</p>
+  <div class="redirect-info" id="redirectInfo"></div>
+  <div class="links">
+    <a href="/" class="btn">Go to Converter</a>
+    <a href="/articles/">Articles</a>
+    <a href="/fee-estimator/">Fee Estimator</a>
+  </div>
+  <script>
+  (function() {
+    var pathname = window.location.pathname;
+    var lower = pathname.toLowerCase();
+    var parts = lower.replace(/\/+$/,'').split('/').filter(function(p){return p;});
+    var redirectUrl = null;
+    var reason = '';
+
+    // Pattern 1: Uppercase currency codes - /USD-to-EUR → /usd-to-eur
+    if (parts.length === 1 && /^[a-z]{3}-to-[a-z]{3}$/.test(parts[0]) && pathname !== lower) {
+      redirectUrl = '/' + parts[0] + '/';
+      reason = 'Normalizing currency code case';
+    }
+
+    // Pattern 2: Missing trailing slash on pair pages
+    if (!redirectUrl && parts.length === 1 && /^[a-z]{3}-to-[a-z]{3}$/.test(parts[0]) && !pathname.match(/\/$/)) {
+      redirectUrl = '/' + parts[0] + '/';
+      reason = 'Adding trailing slash';
+    }
+
+    // Pattern 3: /pairs/{pair} → /{pair}/
+    if (!redirectUrl && parts[0] === 'pairs' && parts.length === 2 && /^[a-z]{3}-to-[a-z]{3}$/.test(parts[1])) {
+      redirectUrl = '/' + parts[1] + '/';
+      reason = 'Redirecting from old URL format';
+    }
+
+    // Pattern 4: Reversed pair - /inr-to-aed doesn't exist but /aed-to-inr does
+    // We can't check existence client-side, but we can try the reversed form
+    if (!redirectUrl && parts.length === 1 && /^[a-z]{3}-to-[a-z]{3}$/.test(parts[0])) {
+      var currencies = parts[0].split('-to-');
+      if (currencies.length === 2) {
+        redirectUrl = '/' + currencies[1] + '-to-' + currencies[0] + '/';
+        reason = 'Trying reversed currency pair';
+      }
+    }
+
+    // Pattern 5: /convert/USD/EUR or /USD/EUR → /usd-to-eur/
+    if (!redirectUrl && parts.length >= 2) {
+      var start = (parts[0] === 'convert') ? 1 : 0;
+      if (parts.length >= start + 2 && /^[a-z]{3}$/.test(parts[start]) && /^[a-z]{3}$/.test(parts[start+1])) {
+        redirectUrl = '/' + parts[start] + '-to-' + parts[start+1] + '/';
+        reason = 'Redirecting to currency pair page';
+      }
+    }
+
+    // Pattern 6: Generic trailing slash
+    if (!redirectUrl && !pathname.match(/\.\w+$/) && !pathname.match(/\/$/)) {
+      redirectUrl = pathname + '/';
+      reason = 'Adding trailing slash';
+    }
+
+    if (redirectUrl && redirectUrl !== pathname && redirectUrl !== pathname + '/') {
+      var el = document.getElementById('redirectInfo');
+      el.innerHTML = '<strong>' + reason + '</strong><br>Redirecting to <a href="' + redirectUrl + '" style="color:#1e40af;text-decoration:underline">' + redirectUrl + '</a>...';
+      el.style.display = 'block';
+      setTimeout(function(){ window.location.href = redirectUrl; }, 2000);
+    }
+  })();
+  </script>
+  <div id="cookie-consent" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#1a1a2e;color:#fff;padding:16px 24px;z-index:9999;font-size:14px;">
+    <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <p style="margin:0;flex:1;min-width:200px;">We use cookies for analytics.</p>
+      <div style="display:flex;gap:8px;">
+        <button onclick="acceptCookies()" style="background:#10b981;color:#fff;border:none;padding:8px 20px;border-radius:6px;cursor:pointer;">Accept</button>
+        <button onclick="declineCookies()" style="background:transparent;color:#fff;border:1px solid #555;padding:8px 20px;border-radius:6px;cursor:pointer;">Decline</button>
+      </div>
     </div>
   </div>
-</div>
-<script>
-function loadGA(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-1KEM4TDVK9';document.head.appendChild(s);s.onload=function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1KEM4TDVK9');};}
-function acceptCookies(){localStorage.setItem('convertcurrency-consent','granted');document.getElementById('cookie-consent').style.display='none';loadGA();}
-function declineCookies(){localStorage.setItem('convertcurrency-consent','denied');document.getElementById('cookie-consent').style.display='none';}
-(function(){var c=localStorage.getItem('convertcurrency-consent');if(c==='granted'){loadGA();}else if(!c){document.getElementById('cookie-consent').style.display='block';}})();
-</script>
+  <script>
+  function loadGA(){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-1KEM4TDVK9';document.head.appendChild(s);s.onload=function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1KEM4TDVK9');};}
+  function acceptCookies(){localStorage.setItem('convertcurrency-consent','granted');document.getElementById('cookie-consent').style.display='none';loadGA();}
+  function declineCookies(){localStorage.setItem('convertcurrency-consent','denied');document.getElementById('cookie-consent').style.display='none';}
+  (function(){var c=localStorage.getItem('convertcurrency-consent');if(c==='granted'){loadGA();}else if(!c){document.getElementById('cookie-consent').style.display='block';}})();
+  </script>
 </body>
 </html>
