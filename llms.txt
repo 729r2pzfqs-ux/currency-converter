@@ -1,7 +1,53 @@
 # convert-currency.org
 
+> Real-time currency and crypto conversion for 150+ currencies, plus salary, travel-budget and inflation comparison tools.
+
 ## About
 Convert-Currency.org provides real-time currency conversion for 150+ currencies and cryptocurrencies. Also includes salary conversion and comparison tools.
 
-## URLs
-- Homepage: https://convert-currency.org/
+## Features / Content
+- Real-time conversion between 150+ fiat currencies, with rates refreshed every 60 seconds.
+- Cryptocurrency conversion for major coins including Bitcoin (BTC), Ethereum (ETH), Solana, XRP/Ripple and Dogecoin.
+- Dedicated converter pages for the most popular currency pairs (e.g. AUD to USD, USD to INR, EUR to GBP).
+- Salary conversion tool for comparing earnings across currencies.
+- Travel budget tool for estimating spending in a destination currency.
+- Inflation comparison tool.
+- Historical rate charts on pair pages.
+- Educational articles on exchange rates, low-fee conversion and travel money.
+- Available in 11 languages.
+
+## Key Facts
+- ~110 dedicated currency-pair converter pages under /pairs/, with ~113 short-URL redirect pages at the site root pointing to them.
+- 150+ fiat currencies supported plus major cryptocurrencies.
+- Rates update every 60 seconds (near real-time) during forex market hours.
+- 11 languages supported.
+- 3 long-form articles.
+- Static site, no login required.
+
+## Sections
+- [Homepage / Converter](https://convert-currency.org/): Main interactive converter with currency, salary, travel and inflation modes.
+- [AUD to USD](https://convert-currency.org/pairs/aud-to-usd/): Example currency-pair converter page.
+- [USD to INR](https://convert-currency.org/pairs/usd-to-inr/): Example currency-pair converter page.
+- [EUR to GBP](https://convert-currency.org/pairs/eur-to-gbp/): Example currency-pair converter page.
+- [How Exchange Rates Work](https://convert-currency.org/articles/how-exchange-rates-work/): Guide to how currency exchange rates are determined.
+- [Convert Currency With Low Fees](https://convert-currency.org/articles/convert-currency-low-fees/): Guide to saving money on conversions.
+- [Currency Tips When Traveling](https://convert-currency.org/articles/currency-tips-traveling/): Travel money guide.
+
+## URL Patterns
+- Currency-pair converters: `https://convert-currency.org/pairs/{from}-to-{to}/` (e.g. `/pairs/usd-to-eur/`). Lowercase 3-letter ISO currency codes.
+- Short pair URLs at the root (e.g. `/usd-to-eur/`) redirect to the corresponding `/pairs/{from}-to-{to}/` page.
+- Articles: `https://convert-currency.org/articles/{slug}/`.
+- Localized homepages: `https://convert-currency.org/{lang}.html` (e.g. `ar.html`, `de.html`, `zh.html`).
+
+## Data Sources
+- Fiat exchange rates: Frankfurter API (https://api.frankfurter.app/), sourced from the European Central Bank (ECB).
+- Cryptocurrency prices: CoinGecko API (https://api.coingecko.com/).
+- Rates are fetched client-side and refresh approximately every 60 seconds.
+
+## Languages
+English (en, default), German (de), Spanish (es), French (fr), Portuguese (pt), Chinese (zh), Japanese (ja), Hindi (hi), Arabic (ar), Russian (ru), Turkish (tr).
+
+## Notes
+- This is a static site hosted on GitHub Pages.
+- Exchange rates are provided for informational purposes only and are not intended for trading or financial decisions.
+- Not affiliated with any bank, central bank, exchange or financial institution.
