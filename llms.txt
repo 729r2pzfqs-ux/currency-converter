@@ -17,7 +17,7 @@ Convert-Currency.org provides real-time currency conversion for 150+ currencies 
 - Available in 11 languages.
 
 ## Key Facts
-- ~110 dedicated currency-pair converter pages under /pairs/, with ~113 short-URL redirect pages at the site root pointing to them.
+- 140 dedicated currency-pair converter pages under /pairs/ (every pair has its reverse), with 140 short-URL redirect pages at the site root pointing to them.
 - 150+ fiat currencies supported plus major cryptocurrencies.
 - Rates update every 60 seconds (near real-time) during forex market hours.
 - 11 languages supported.
@@ -29,6 +29,7 @@ Convert-Currency.org provides real-time currency conversion for 150+ currencies 
 - [AUD to USD](https://convert-currency.org/pairs/aud-to-usd/): Example currency-pair converter page.
 - [USD to INR](https://convert-currency.org/pairs/usd-to-inr/): Example currency-pair converter page.
 - [EUR to GBP](https://convert-currency.org/pairs/eur-to-gbp/): Example currency-pair converter page.
+- [Articles index](https://convert-currency.org/articles/): List of all guides and tools.
 - [How Exchange Rates Work](https://convert-currency.org/articles/how-exchange-rates-work/): Guide to how currency exchange rates are determined.
 - [Convert Currency With Low Fees](https://convert-currency.org/articles/convert-currency-low-fees/): Guide to saving money on conversions.
 - [Currency Tips When Traveling](https://convert-currency.org/articles/currency-tips-traveling/): Travel money guide.

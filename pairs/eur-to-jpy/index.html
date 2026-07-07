@@ -10,13 +10,18 @@
     <meta property="og:title" content="EUR to JPY Converter | Live Exchange Rate">
     <meta property="og:description" content="Convert Euro to Japanese Yen instantly with live rates.">
     <meta property="og:url" content="https://convert-currency.org/pairs/eur-to-jpy/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://convert-currency.org/logos/logo-icon-512x512.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="EUR to JPY Converter | Live Exchange Rate">
+    <meta name="twitter:description" content="Convert Euro to Japanese Yen instantly with live rates.">
     
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
         "name": "EUR to JPY Converter",
-        "url": "https://convert-currency.org/eur-to-jpy/",
+        "url": "https://convert-currency.org/pairs/eur-to-jpy/",
         "description": "Convert Euro to Japanese Yen with live exchange rates",
         "applicationCategory": "FinanceApplication"
     }
@@ -130,7 +135,7 @@
 
     <footer class="py-8 px-4 border-t border-white/10">
         <div class="max-w-3xl mx-auto text-center text-slate-300 text-sm">
-            <p>© 2026 convert-currency.org • <a href="/" class="text-emerald-400 hover:underline">All Currencies</a></p>
+            <p>© 2026 convert-currency.org • <a href="/" class="text-emerald-400 hover:underline">All Currencies</a> • <a href="/privacy/" class="text-emerald-400 hover:underline">Privacy</a></p>
         </div>
     </footer>
 
@@ -159,7 +164,7 @@
         }
 
         function swap() {
-            window.location.href = '/jpy-to-eur/';
+            window.location.href = '/pairs/jpy-to-eur/';
         }
 
         function updateQuick() {
@@ -200,8 +205,5 @@
         setInterval(fetchRates, 60000);
         lucide.createIcons();
     </script>
-<!-- GDPR Cookie Consent -->
-</div>
-</div>
 </body>
 </html>
